@@ -66,20 +66,12 @@ If you do not have a system image, the following things should be noted:
 
 ## Getting Started
 
-Power the device and plug the breakout board into the computer via a USB cable. Running
-```bash
-lsusb
-```
-should show the 'FT232 USB-Serial' device. Now run
+Power the device and plug the breakout board into the computer via a USB cable. Running `lsusb` should show the 'FT232 USB-Serial' device. Now run
 ```bash
 roslaunch reach5mini_ros_passthrough run_reach5mini_passthrough.launch 
 ```
 which connects ROS to the device.
-Running
-```bash
-rostopic list -v
-```
-should show a list of published topics including '/r5m_0/velocity' and subscribed topics including '/r5m_0/mode'.
+Running `rostopic list -v` should show a list of published topics including '/r5m_0/velocity' and subscribed topics including '/r5m_0/mode'.
 Now we echo the published position
 ```bash
 rostopic echo /r5m_0/position
