@@ -24,7 +24,7 @@ Install Python3 and dependencies.
 sudo apt update
 sudo apt install python3-dev python3-setuptools python3-pip python3-yaml
 sudo python3 -m pip install --upgrade pip
-sudo python3 -m pip install pyserial numpy 
+sudo python3 -m pip install pyserial numpy pynput
 ```
 
 #### Install Robot Operating System (ROS)
