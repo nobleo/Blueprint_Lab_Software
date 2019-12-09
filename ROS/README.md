@@ -70,7 +70,7 @@ Power the device and plug the breakout board into the computer via a USB cable. 
 ```bash
 lsusb
 ```
-should show the FT232 USB-Serial. Now run
+should show the 'FT232 USB-Serial' device. Now run
 ```bash
 roslaunch reach5mini_ros_passthrough run_reach5mini_passthrough.launch 
 ```
@@ -79,7 +79,7 @@ Running
 ```bash
 rostopic list -v
 ```
-should show a list of published topics including /r5m_0/velocity and subscribed topics including r5m_0/mode.
+should show a list of published topics including '/r5m_0/velocity' and subscribed topics including '/r5m_0/mode'.
 Now we echo the published position
 ```bash
 rostopic echo /r5m_0/position
@@ -88,7 +88,7 @@ and in a new terminal request [mode,velocity,position] from joint 1
 ```bash
 rostopic pub -1 /r5m_0/requests blueprintlab_reachsystem_ros_messages/request_list '{stamp: now, device_id: 1, requests: [1,2,3]}'
 ```
-The joint position should be echoed onto the /r5m_0/position topic. To send a position demand to joint 3:
+The joint position should be echoed onto the '/r5m_0/position' topic. To send a position demand to joint 3:
 ```bash
 rostopic pub -1 /r5m_0/cmd_position blueprintlab_reachsystem_ros_messages/single_float '{stamp: now, device_id: 3, value: 1.57}'
 ```
