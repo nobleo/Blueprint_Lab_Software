@@ -52,7 +52,7 @@ catkin_make
 source ~/catkin_ws/devel/setup.bash
 ```
 Note: You must source the file via the command `source ~/catkin_ws/devel/setup.bash` everytime you open a new terminal. You can make this permanent by adding the line to your `~/.bashrc` config file via command `echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc`
-
+Finally run `sudo adduser $USER dialout` to allow access to the serial port, then log out and back in.
 Now the installation is complete.
 
 
@@ -76,7 +76,7 @@ Now we echo the published position
 ```bash
 rostopic echo /r5m_0/position
 ```
-and in a new terminal request [mode,velocity,position] from joint 1
+and in a new terminal request [mode, velocity, position] from joint 1
 ```bash
 rostopic pub -1 /r5m_0/requests blueprintlab_reachsystem_ros_messages/request_list '{stamp: now, device_id: 1, requests: [1,2,3]}'
 ```
