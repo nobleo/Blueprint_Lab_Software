@@ -13,6 +13,7 @@ class PacketID():
     OPENLOOP = 0x04
     CURRENT = 0x05
 
+    POSITION_VELOCITY_DEMAND = 0x0C
     INDEXED_POSITION = 0x0D
     RELATIVE_POSITION = 0x0E
     AUTO_LIMIT_CURRENT_DEMAND = 0x0F
@@ -141,7 +142,7 @@ FLOAT_PACKETS: 	List of all of the PacketIDs that sends/receives
                 floating point (32-bit) data rather than integers
 '''
 FLOAT_PACKETS = [PacketID.VELOCITY, PacketID.POSITION, PacketID.OPENLOOP, PacketID.CURRENT,
-                 PacketID.RELATIVE_POSITION,
+                 PacketID.RELATIVE_POSITION, PacketID.INDEXED_POSITION, PacketID.POSITION_VELOCITY_DEMAND,
                  PacketID.SUPPLYVOLTAGE, PacketID.TEMPERATURE,
                  PacketID.MODEL_NUMBER,
                  PacketID.SERIAL_NUMBER, PacketID.VERSION,
@@ -173,7 +174,9 @@ FLOAT_PACKETS = [PacketID.VELOCITY, PacketID.POSITION, PacketID.OPENLOOP, Packet
 
 
 class Mode():
-    """Mode Class: 8-bit definitions of the device Modes that can be sent/received from the product devices"""
+    '''
+    List of all possible modes that the on-board devices may be in
+    '''
     STANDBY = 0x00
     DISABLE = 0x01
     VELOCITY = 0x03
@@ -185,6 +188,24 @@ class Mode():
     INIT = 0x06
     COMPLIANT = 0x09
     GRIP = 0x0A
+    STALL_DRIVE = 0x0B
+    CALIBRATE_TEST = 0x0C
+    AUTO_LIMIT = 0x0D
+    CALIBRATE_OUTER = 0x0E
+    VELOCITY_CONTROL_INNER = 0x0F
+    RELATIVE_POSITION = 0x12
+    INDEXED_POSITION = 0x13
+
+    POS_PRESET = 0x14
+    ZERO_VELOCITY = 0x15
+    FACTORY_CURRENT = 0x16
+    KM_END_POS = 0x17
+    KM_END_VEL = 0x18
+    KM_END_POS_LOCAL = 0x19
+    KM_END_VEL_LOCAL = 0x1A
+    VELOCITY_FACTORY = 0x1B
+    POSITION_VELOCITY_CONTROL = 0x1C
+    DIRECT_CONTROL = 0x1D
 
 
 def get_name_of_mode(mode):
