@@ -22,7 +22,7 @@ class BplSerial():
     """
     motor_data = {}
 
-    deviceIDs = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]
+    deviceIDs = [0x01, 0x02, 0x03, 0x04, 0x05,  0x0D, 0x0E, 0x06, 0x07]
     connection_status = ''
     comport_status = 'closed'
 
@@ -31,7 +31,7 @@ class BplSerial():
         self._init_motors(num_motors)
 
     def _init_motors(self, num_motors=6):
-        alphalist = ['a', 'b', 'c', 'd', 'e', 'f']
+        alphalist = ['a', 'b', 'c', 'd', 'e', '708', 'tx2', 'f', 'g']
         empty_motor = self._init_motor_model()
         for num in range(0, num_motors):
             motor_name = alphalist[num]
