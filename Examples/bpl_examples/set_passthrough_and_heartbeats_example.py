@@ -8,7 +8,7 @@ features and protections such as obstacle and collision avoidance.
 Heartbeats allow the device to repeatably stream information at a specified frequency. You can select what data
 to stream by modifying the HEARTBEAT_PACKETS.
 
-Select your communication method at the bottom of the script, but commenting / uncommenting the relevant function.
+Select your communication method at the bottom of the script, by commenting / uncommenting the relevant function.
 
 DISCLAIMER:
 THIS WILL DISABLE SELF COLLISION AND OBSTACLE AVOIDANCE.
@@ -138,7 +138,7 @@ def set_passthrough_and_heartbeat_via_serial(device_ids: List[int], heartbeat_pa
     set_passthrough_packet = BPLProtocol.encode_packet(PASSTHROUGH_BOARD_DEVICE_ID,
                                                        PacketID.DEVICE_TYPE,
                                                        bytes([PASSTHROUGH_MODE]))
-
+    print("Setting Base Board to Passthrough")
     serial_device.write(set_passthrough_packet)
 
     time.sleep(0.2)
@@ -147,6 +147,7 @@ def set_passthrough_and_heartbeat_via_serial(device_ids: List[int], heartbeat_pa
     reset_processor_packet = BPLProtocol.encode_packet(BRAVO_PROCESSOR_DEVICE_ID,
                                                        PacketID.SYSTEM_RESET,
                                                        bytes([0]))
+    print("Resetting Bravo Processor")
     serial_device.write(reset_processor_packet)
 
     time.sleep(0.2)
@@ -155,12 +156,10 @@ def set_passthrough_and_heartbeat_via_serial(device_ids: List[int], heartbeat_pa
     reset_constraints_packet = BPLProtocol.encode_packet(0xFF,
                                                          PacketID.VELOCITY_CONSTRAINT,
                                                          encoded_velocity_constraints_bytes)
-
+    print("Resetting Bravo Velocity Constraints")
     serial_device.write(reset_constraints_packet)
 
     time.sleep(0.2)
-
-    print("Device is now in passthrough")
 
     for device_id in device_ids:
         print(f"Setting heartbeat packets for Device {device_id}.")
@@ -172,9 +171,6 @@ def set_passthrough_and_heartbeat_via_serial(device_ids: List[int], heartbeat_pa
                                                             bytes([frequency]))
         serial_device.write(set_heartbeat_frequency)
         time.sleep(0.05)
-
-    print("Heartbeats are set")
-
 
 
 def set_passthrough_and_heartbeat_via_udp(device_ids: List[int], heartbeat_packets: List[int], frequency: int):
@@ -188,7 +184,7 @@ def set_passthrough_and_heartbeat_via_udp(device_ids: List[int], heartbeat_packe
     set_passthrough_packet = BPLProtocol.encode_packet(PASSTHROUGH_BOARD_DEVICE_ID,
                                                        PacketID.DEVICE_TYPE,
                                                        bytes([PASSTHROUGH_MODE]))
-
+    print("Setting Base Board to Passthrough")
     udp.sendto(set_passthrough_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
     time.sleep(0.2)
@@ -197,6 +193,7 @@ def set_passthrough_and_heartbeat_via_udp(device_ids: List[int], heartbeat_packe
     reset_processor_packet = BPLProtocol.encode_packet(BRAVO_PROCESSOR_DEVICE_ID,
                                                        PacketID.SYSTEM_RESET,
                                                        bytes([0]))
+    print("Resetting Bravo Processor")
     udp.sendto(reset_processor_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
     time.sleep(0.2)
@@ -205,12 +202,10 @@ def set_passthrough_and_heartbeat_via_udp(device_ids: List[int], heartbeat_packe
     reset_constraints_packet = BPLProtocol.encode_packet(0xFF,
                                                          PacketID.VELOCITY_CONSTRAINT,
                                                          encoded_velocity_constraints_bytes)
-
+    print("Resetting Bravo Velocity Constraints")
     udp.sendto(reset_constraints_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
     time.sleep(2.5)
-
-    print("Device is now in passthrough")
 
     for device_id in device_ids:
         print(f"Setting heartbeat packets for Device {device_id}.")

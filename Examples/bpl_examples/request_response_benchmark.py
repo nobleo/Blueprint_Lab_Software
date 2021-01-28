@@ -2,8 +2,8 @@
 
 Script to Produce statistics on time to request information from the joints on the arm.
 
-
-Select your communication method at the bottom of the script, but commenting / uncommenting the relevant function.
+For Serial Communications, comment/uncomment 'request_serial()' at the bottom of this script.
+For UDP Communications, comment/uncomment 'request_udp()' at the bottom of this script.
 """
 import re
 import socket

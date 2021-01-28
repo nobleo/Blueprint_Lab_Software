@@ -10,6 +10,7 @@ Select your communication method at the bottom of the script, but commenting / u
 DISCLAIMER:
 THIS WILL DISABLE SELF COLLISION AND OBSTACLE AVOIDANCE.
 USE PASSTHROUGH MODE WITH CAUTION
+WITH THESE FEATURES TURNED OFF, THE ARM WILL COLLIDE WITH ITSELF IF COMMANDED TO.
 
 """
 import re
@@ -133,32 +134,28 @@ def set_passthrough_via_serial():
     set_passthrough_packet = BPLProtocol.encode_packet(PASSTHROUGH_BOARD_DEVICE_ID,
                                                        PacketID.DEVICE_TYPE,
                                                        bytes([PASSTHROUGH_MODE]))
-
+    print("Setting Base Board to Passthrough")
     serial_device.write(set_passthrough_packet)
 
-    time.sleep(0.5)
+    time.sleep(0.2)
 
     # Reset the Bravo processor
     reset_processor_packet = BPLProtocol.encode_packet(BRAVO_PROCESSOR_DEVICE_ID,
                                                        PacketID.SYSTEM_RESET,
                                                        bytes([0]))
+    print("Resetting Bravo Processor")
     serial_device.write(reset_processor_packet)
 
-    time.sleep(0.5)
+    time.sleep(0.2)
 
     encoded_velocity_constraints_bytes = BPLProtocol.encode_floats([20.0, -20.0])
     reset_constraints_packet = BPLProtocol.encode_packet(0xFF,
                                                          PacketID.VELOCITY_CONSTRAINT,
                                                          encoded_velocity_constraints_bytes)
-
+    print("Resetting Bravo Velocity Constraints")
     serial_device.write(reset_constraints_packet)
 
-    time.sleep(0.5)
-
-    print("Device is now in passthrough")
-    # Should be in passthrough mode now.
-
-
+    time.sleep(0.2)
 
 
 def set_passthrough_via_udp():
@@ -172,7 +169,7 @@ def set_passthrough_via_udp():
     set_passthrough_packet = BPLProtocol.encode_packet(PASSTHROUGH_BOARD_DEVICE_ID,
                                                        PacketID.DEVICE_TYPE,
                                                        bytes([PASSTHROUGH_MODE]))
-
+    print("Setting Base Board to Passthrough")
     udp.sendto(set_passthrough_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
     time.sleep(0.5)
@@ -181,20 +178,19 @@ def set_passthrough_via_udp():
     reset_processor_packet = BPLProtocol.encode_packet(BRAVO_PROCESSOR_DEVICE_ID,
                                                        PacketID.SYSTEM_RESET,
                                                        bytes([0]))
+    print("Resetting Bravo Processor")
     udp.sendto(reset_processor_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
-    time.sleep(0.5)
+    time.sleep(0.2)
 
     encoded_velocity_constraints_bytes = BPLProtocol.encode_floats([20.0, -20.0])
     reset_constraints_packet = BPLProtocol.encode_packet(0xFF,
                                                          PacketID.VELOCITY_CONSTRAINT,
                                                          encoded_velocity_constraints_bytes)
-
+    print("Resetting Bravo Velocity Constraints")
     udp.sendto(reset_constraints_packet, (UDP_IP_ADDRESS, UDP_PORT))
 
     time.sleep(0.5)
-
-    print("Device is now in passthrough")
 
 
 SERIAL_PORT = "COM12"  # Serial port in your computer.
@@ -205,7 +201,7 @@ UDP_PORT = 6789
 
 if __name__ == '__main__':
     i = input(
-        "DISCLAIMER: Setting this device into passthrough mode will disable self collision and obstacle avoidance.\n"
+        "DISCLAIMER: Setting this device into passthrough mode will DISABLE self collision and obstacle avoidance.\n"
         "Are you sure you want to continue? (y/n): ")
 
     if i == "y":
@@ -217,6 +213,5 @@ if __name__ == '__main__':
         set_passthrough_via_udp()
     else:
         print("Ending Script")
-    # Create connection
 
 
