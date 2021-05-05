@@ -1,4 +1,4 @@
-<robot name="bravo7">
+<robot name="bravo5">
     <link name="base_link"/>
     <material name="bravo_black">
     <color rgba="0.3 0.3 0.3 1"/>
@@ -35,7 +35,7 @@
         </visual>
     </link>
 
-    <joint name="bravo_axis_g" type="revolute">
+    <joint name="bravo_axis_e" type="revolute">
         <parent link="bravo_rs2_266_link"/>
         <child link="bravo_rs2_217_link"/>
         <origin rpy="0 0 0" xyz="0.0665 0 0.078"/>
@@ -43,18 +43,19 @@
         <limit effort="9.0" lower="0.0" upper="6.3" velocity="0.5"/>
     </joint>
 
-    <link name="bravo_rs2_250_212_214_link">
+    <link name="bravo_RS2-1013_base_link">
         <visual>
             <geometry>
-                <mesh filename="package://bravo_description/meshes/RS2-250-212-214.stl"/>
+                <mesh filename="package://bravo_description/meshes/RS2-1013_base.stl"/>
             </geometry>
+            <origin rpy="0 0 0" xyz = "-0.046 0 -0.065"/>
             <material name="bravo_black"/>
         </visual>
     </link>
 
-    <joint name="bravo_axis_f" type="revolute">
+    <joint name="bravo_axis_d" type="revolute">
         <parent link="bravo_rs2_217_link"/>
-        <child link="bravo_rs2_250_212_214_link"/>
+        <child link="bravo_RS2-1013_base_link"/>
         <origin rpy="0 0 0" xyz="-0.046 0 0.0674"/>
         <axis xyz="0 1 0"/>
         <limit effort="9.0" lower="0.0" upper="3.5" velocity="0.5"/>
@@ -69,50 +70,45 @@
         </visual>
     </link>
 
-    <joint name="bravo_axis_e" type="revolute">
-        <parent link="bravo_rs2_250_212_214_link"/>
-        <child link="bravo_rs2_268_link"/>
-        <origin rpy="0 0 0" xyz="-0.0052 0 -0.29055"/>
-        <axis xyz="0 1 0"/>
-        <limit effort="9.0" lower="0.0" upper="3.5" velocity="0.5"/>
-    </joint>
-
-
-    <link name="bravo_rs2_214_link">
+    <link name="bravo_RS2-1030_base_link">
         <visual>
             <geometry>
-                <mesh filename="package://bravo_description/meshes/RS2-214.stl"/>
+                <mesh filename="package://bravo_description/meshes/RS2-1030.stl"/>
             </geometry>
+            <origin rpy="0 3.1415 0" xyz = "-0.046 0 -0.05"/>
             <material name="bravo_black"/>
         </visual>
     </link>
 
-    <joint name="bravo_axis_d" type="revolute">
-        <parent link="bravo_rs2_268_link"/>
-        <child link="bravo_rs2_214_link"/>
-        <origin rpy="0 0 3.14159" xyz="0.0408 0 0.09695"/>
-        <axis xyz="0 0 -1"/>
-        <limit effort="9.0" lower="0.0" upper="6.3" velocity="0.5"/>
-    </joint>
-
-    <link name="bravo_rs2_161_link">
+    <link name="bravo_RS2-1026_base_link">
         <visual>
             <geometry>
-                <mesh filename="package://bravo_description/meshes/RS2-161.stl"/>
+                <mesh filename="package://bravo_description/meshes/RS2-1026_0_base.stl"/>
             </geometry>
+            <origin rpy="0 3.1415 0" xyz = "-0.046 0 -0.2350"/>
             <material name="bravo_black"/>
         </visual>
     </link>
+
+    <joint name="bravo_rs2_313_joint" type="fixed">
+        <parent link="bravo_RS2-1013_base_link"/>
+        <child link="bravo_RS2-1030_base_link"/>
+        <origin rpy="0 0 0"/>
+    </joint>
+
+    <joint name="bravo_rs2_326_joint" type="fixed">
+        <parent link="bravo_RS2-1030_base_link"/>
+        <child link="bravo_RS2-1026_base_link"/>
+        <origin rpy="0 0 0" xyz ="0 0 0"/>
+    </joint>
 
     <joint name="bravo_axis_c" type="revolute">
-        <parent link="bravo_rs2_214_link"/>
-        <child link="bravo_rs2_161_link"/>
-        <origin rpy="0 0 0" xyz="-0.0408 0 0.063"/>
+        <parent link="bravo_RS2-1013_base_link"/>
+        <child link="bravo_rs2_268_link"/>
+        <origin rpy="0 0 3.1415" xyz="-0.0868 0 -0.29355"/>
         <axis xyz="0 1 0"/>
         <limit effort="9.0" lower="0.0" upper="3.5" velocity="0.5"/>
     </joint>
-
-
 
     <link name="bravo_rs2_180_link">
         <visual>
@@ -125,9 +121,9 @@
 
 
     <joint name="bravo_axis_b" type="revolute">
-        <parent link="bravo_rs2_161_link"/>
+        <parent link="bravo_rs2_268_link"/>
         <child link="bravo_rs2_180_link"/>
-        <origin rpy="0 3.14159 0" xyz="-0.0408 0 -0.08863"/>
+        <origin rpy="0 0 0" xyz="0.0408 0 0.09645"/>
         <axis xyz="0 0 -1"/>
         <limit effort="9.0" lower="0.0" upper="6.3" velocity="0.5"/>
     </joint>
