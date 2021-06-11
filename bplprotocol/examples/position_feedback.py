@@ -17,9 +17,9 @@ if __name__ == '__main__':
 
     packet_reader = PacketReader
 
-    serial_port_name = "COM0"
+    serial_port_name = "COM10"
 
-    serial_port = serial.Serial("COM0", baud=115200, parity=serial.PARITY_NONE, stopbits=0, timeout=0)
+    serial_port = serial.Serial(serial_port_name, baudrate=115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0)
 
     request_packet = b''
 
@@ -32,12 +32,24 @@ if __name__ == '__main__':
         # Send request packet
         serial_port.write(request_packet)
 
-        position_responses = [None] * len(device_ids)
+        position_responses = {}
         # Read request packets
 
         start_time = time.time()
         while time.time() < start_time + 1/frequency:
             time.sleep(0.0001)
             try:
-                serial_port.read()
-            except
+                read_data = serial_port.read()
+            except:
+                read_data = b''
+            if read_data != b'':
+                packets = packet_reader.receive_bytes(read_data)
+                if packets:
+                    for packet in packets:
+                        read_device_id, read_packet_id, data_bytes = packet
+                        if read_device_id in device_ids and read_packet_id == PacketID.POSITION:
+
+                            position = BPLProtocol.decode_floats(data_bytes)[0]
+
+                            position_responses[read_device_id] = position
+        print(f"Positions {position_responses}")
