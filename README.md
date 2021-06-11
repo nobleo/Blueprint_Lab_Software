@@ -1,22 +1,11 @@
-# R5M_Examples
+# Blueprint Lab Software
+The Blueprint lab software is a repository.
 
-Links
---------------
-* **Blueprint Lab** - https://blueprintlab.com/
-* **Reach Alpha** - https://blueprintlab.com/products/reach-alpha/
+## Installation
 
-Contents
---------------
-* **BPL_serial_protocol** - Software Development Kit (SDK) as a guide to using the Blueprint Lab's products.
-* **ROS** - ROS nodes to interface with the R5M. See README in the ROS folder for installation instructions.
-* **Examples** - General samples for more advanced integration for ROV platforms.
-* **Documentation** - Documentation to assist in development.
+```git clone https://github.com/blueprint-lab/Blueprint_Lab_Software.git```
 
-Installation
---------------
-* **Dependancies**
-All examples are primarily designed around Python 3. Some parts may need modification if you plan to use Python 2.
+##  Usage
 
-Support
---------------
-* **Contact** - info@blueprintlab.com for more information or assistance.
+
+## License
