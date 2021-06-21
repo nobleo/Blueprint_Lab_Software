@@ -91,7 +91,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">BPL Protocol</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#python-installation">Python Installation</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#usage">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#usage">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sdk">SDK</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">BPL Protocol SDK</a></li>
 </ul>
 </li>
@@ -311,6 +312,12 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 <dt class="sig sig-object py" id="bplprotocol.PacketID.CURRENT_LIMITS">
 <span class="sig-name descname"><span class="pre">CURRENT_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">18</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT_LIMITS" title="Permalink to this definition">¶</a></dt>
 <dd><p>2 floats - Maximum and Minimum currents of the device</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bplprotocol.PacketID.ATI_FT_READING">
+<span class="sig-name descname"><span class="pre">ATI_FT_READING</span></span><em class="property"> <span class="pre">=</span> <span class="pre">216</span></em><a class="headerlink" href="#bplprotocol.PacketID.ATI_FT_READING" title="Permalink to this definition">¶</a></dt>
+<dd><p>6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it</p>
 </dd></dl>
 
 </dd></dl>
