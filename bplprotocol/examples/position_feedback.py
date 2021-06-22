@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     frequency = 20
 
-    packet_reader = PacketReader
+    packet_reader = PacketReader()
 
     serial_port_name = "COM10"
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
             time.sleep(0.0001)
             try:
                 read_data = serial_port.read()
-            except:
+            except BaseException:
                 read_data = b''
             if read_data != b'':
                 packets = packet_reader.receive_bytes(read_data)

@@ -92,6 +92,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">BPL Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python-installation">Python Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sdk">SDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sdk.html">BPL Protocol SDK</a></li>
 </ul>
@@ -173,7 +174,7 @@
 <h2>Python Installation<a class="headerlink" href="#python-installation" title="Permalink to this headline">¶</a></h2>
 <p>Here are instructions to install for python</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ./bplprotocol
-pip install .
+pip3 install .
 </pre></div>
 </div>
 </div>
@@ -182,10 +183,59 @@ pip install .
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bplprotocol</span> <span class="kn">import</span> <span class="n">BPLProtocol</span><span class="p">,</span> <span class="n">PacketID</span>
 
 <span class="c1"># Encode a velocity command packet:</span>
-<span class="c1"># velocity of +3.0 mm/s to device 0x01 (Jaws)</span>
-<span class="n">data_bytes</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">VELOCITY</span><span class="p">,</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_floats</span><span class="p">([</span><span class="mf">3.0</span><span class="p">]))</span>
+
+<span class="c1"># Encodes the packet with a \x00 on the end (null byte)</span>
+
+<span class="n">data_bytes</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">VELOCITY</span><span class="p">,</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_floats</span><span class="p">([</span><span class="mf">3.0</span><span class="p">]))</span>     <span class="c1"># velocity of +3.0 mm/s to device 0x01 (Jaws)</span>
+
+
+<span class="c1"># Appending bytes together  #</span>
+<span class="n">data_bytes</span> <span class="o">+=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="p">[</span><span class="n">PacketID</span><span class="o">.</span><span class="n">VELOCITY</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">]))</span>  <span class="c1"># Request packet of Velocity and Position from the Wrist (device_id 0x02)</span>
+
+
+
+<span class="c1"># Decoding any read bytes.</span>
+<span class="c1"># Option 1 Splitting and decoding manually.</span>
+
+<span class="c1"># Split the packet at with \x00 (null byte) as the seperator. incomplete_bytes contains bytes that have not seen \x00 to terminate it</span>
+<span class="n">read_bytes</span><span class="p">,</span> <span class="n">incomplete_bytes</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">packet_splitter</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
+
+<span class="c1"># Decode the bytes into a list of packets</span>
+<span class="n">packets</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">decode_packet</span><span class="p">(</span><span class="n">read_bytes</span><span class="p">)</span>
+
+<span class="c1"># Option 2, Reading packets from the packet reader</span>
+
+<span class="n">pr</span> <span class="o">=</span> <span class="n">PacketReader</span><span class="p">()</span>
+
+<span class="c1"># The packet reader will decode packets, and reconstruct incomplete packets</span>
+<span class="n">packets</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">receive_bytes</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+
+<span class="c1"># Each decoded packet is a 3 element tuple of device_id, packet_id, and data</span>
+<span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
+    <span class="c1"># int, int, bytes</span>
+    <span class="n">device_id</span><span class="p">,</span> <span class="n">packet_id</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">packet</span>
+
+
+    <span class="c1"># A position packet is a float packet. Float packets must be decoded</span>
+
+    <span class="k">if</span> <span class="n">packet_id</span> <span class="o">==</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">:</span>
+        <span class="n">float_list</span> <span class="o">=</span> <span class="n">packet_id</span><span class="o">.</span><span class="n">decode_floats</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Position packets contain 1 float, other packets may contain more than one float.</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">float_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I received a position packet from device: </span><span class="si">{</span><span class="n">device_id</span><span class="si">}</span><span class="s2"> with position: </span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s2">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Non float packets can be decoded as list of integers</span>
+        <span class="n">data_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I received packet from device </span><span class="si">{</span><span class="n">device_id</span><span class="si">}</span><span class="s2"> with packet id: </span><span class="si">{</span><span class="n">packet_id</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">data_list</span><span class="si">}</span><span class="s2">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Some code examples using the bplprotocol can be found under bplprotocol/examples</p>
 </div>
 <div class="section" id="sdk">
 <h2>SDK<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h2>
