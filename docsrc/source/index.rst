@@ -11,6 +11,7 @@ Welcome to Blueprint Lab Software's documentation!
    :caption: Contents
 
    bplprotocol/index
+   ros1/index
    documentation/index
 
 
