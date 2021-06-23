@@ -1,0 +1,5 @@
+<launch>
+    <node name="serial_passthrough" pkg="bpl_passthrough" type="serial_passthrough.py">
+        <param name="serial_port" value="/dev/ttyUSB0"/>
+    </node>
+</launch>

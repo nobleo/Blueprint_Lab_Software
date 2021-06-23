@@ -16,6 +16,7 @@ baudrate = rospy.get_param('baudrate', default=115200)
 parity = rospy.get_param('parity', default=serial.PARITY_NONE)
 stop_bits = rospy.get_param('stop_bits', default=serial.STOPBITS_ONE)
 
+
 class BPLPassthroughNode:
 
     def __init__(self):
@@ -49,7 +50,7 @@ class BPLPassthroughNode:
 
     def rx_receive(self):
         packet_reader = PacketReader()
-        rate = rospy.Rate(1000)
+        rate = rospy.Rate(10000)
         while not rospy.is_shutdown():
 
             try:
@@ -74,10 +75,9 @@ class BPLPassthroughNode:
                     rospy.loginfo("Publishing {}".format(ros_packet))
                     self.rx_publisher.publish(ros_packet)
             # Read from serial and transmit
-            read_serial = 0.3
-
             rate.sleep()
             pass
+
 
 if __name__ == '__main__':
     passthrough_node = BPLPassthroughNode()
