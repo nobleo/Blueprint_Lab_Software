@@ -30,4 +30,54 @@ To build all packages
 
 Usage
 ---------------------------
+The ROS Folder is split into several ROS packages.
 
+bpl_passthrough
+^^^^^^^^^^^^^^^^^^^^^^^^
+The BPL Passthrough is the core package that allows communication to bpl products.
+You can connect to a manipulator via serial or UDP (Bravo arms only).
+
+.. code-block:: bash
+
+   roslaunch bpl_passthrough udp_passthrough.launch
+
+or
+
+.. code-block:: bash
+
+   roslaunch bpl_passthrough serial_passthrough.launch
+
+Published Topics
+""""""""""""""""""""""
+`/rx` (`bpl_msgs/Packet`) - Received Packets from the manipulator
+
+
+Subscribed Topics
+""""""""""""""""""""""
+`/tx` (`bpl_msgs/Packet`) - Packets that will be sent to the manipulator
+
+Parameters - udp_passthrough.py
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+`ip_address` (string) - IP Address of the arm. (Defaults to 192.168.2.3)
+
+`port` (int) - UDP Port of the arm. (Defaults to 6789)
+
+
+Parameters - serial_passthrough.py
+"""""""""""""""""""""""""""""""""""""""""""""""""
+`serial_port` (string) - Serial Port to connect to the arm (Defaults to "/dev/ttyUSB0")
+
+`baudrate` (int) - UDP Port of the arm. (Defaults to 115200)
+
+
+bpl_alpha_description
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The BPL Alpha Description package contains the Universal Robot Description File (URDF) files of the alpha range of manipulators.
+
+To view an Alpha 5 urdf:
+
+.. code-block:: bash
+
+   roslaunch bpl_alpha_description view_urdf.launch

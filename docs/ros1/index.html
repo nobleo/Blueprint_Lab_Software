@@ -92,7 +92,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../bplprotocol/index.html">BPL Protocol</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ROS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bpl-passthrough">bpl_passthrough</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscribed-topics">Subscribed Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters-udp-passthrough-py">Parameters - udp_passthrough.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters-serial-passthrough-py">Parameters - serial_passthrough.py</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bpl-alpha-description">bpl_alpha_description</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
@@ -187,6 +197,45 @@ catkin_make
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The ROS Folder is split into several ROS packages.</p>
+<div class="section" id="bpl-passthrough">
+<h3>bpl_passthrough<a class="headerlink" href="#bpl-passthrough" title="Permalink to this headline">¶</a></h3>
+<p>The BPL Passthrough is the core package that allows communication to bpl products.
+You can connect to a manipulator via serial or UDP (Bravo arms only).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_passthrough udp_passthrough.launch
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_passthrough serial_passthrough.launch
+</pre></div>
+</div>
+<div class="section" id="published-topics">
+<h4>Published Topics<a class="headerlink" href="#published-topics" title="Permalink to this headline">¶</a></h4>
+<p><cite>/rx</cite> (<cite>bpl_msgs/Packet</cite>) - Received Packets from the manipulator</p>
+</div>
+<div class="section" id="subscribed-topics">
+<h4>Subscribed Topics<a class="headerlink" href="#subscribed-topics" title="Permalink to this headline">¶</a></h4>
+<p><cite>/tx</cite> (<cite>bpl_msgs/Packet</cite>) - Packets that will be sent to the manipulator</p>
+</div>
+<div class="section" id="parameters-udp-passthrough-py">
+<h4>Parameters - udp_passthrough.py<a class="headerlink" href="#parameters-udp-passthrough-py" title="Permalink to this headline">¶</a></h4>
+<p><cite>ip_address</cite> (string) - IP Address of the arm. (Defaults to 192.168.2.3)</p>
+<p><cite>port</cite> (int) - UDP Port of the arm. (Defaults to 6789)</p>
+</div>
+<div class="section" id="parameters-serial-passthrough-py">
+<h4>Parameters - serial_passthrough.py<a class="headerlink" href="#parameters-serial-passthrough-py" title="Permalink to this headline">¶</a></h4>
+<p><cite>serial_port</cite> (string) - Serial Port to connect to the arm (Defaults to “/dev/ttyUSB0”)</p>
+<p><cite>baudrate</cite> (int) - UDP Port of the arm. (Defaults to 115200)</p>
+</div>
+</div>
+<div class="section" id="bpl-alpha-description">
+<h3>bpl_alpha_description<a class="headerlink" href="#bpl-alpha-description" title="Permalink to this headline">¶</a></h3>
+<p>The BPL Alpha Description package contains the Universal Robot Description File (URDF) files of the alpha range of manipulators.</p>
+<p>To view an Alpha 5 urdf:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_alpha_description view_urdf.launch
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
