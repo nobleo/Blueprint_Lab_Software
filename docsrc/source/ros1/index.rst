@@ -36,6 +36,8 @@ bpl_passthrough
 ^^^^^^^^^^^^^^^^^^^^^^^^
 The BPL Passthrough is the core package that allows communication to bpl products.
 You can connect to a manipulator via serial or UDP (Bravo arms only).
+The `bpl_msgs/Packet` data field is structured as a list of uint8. This is a list of bytes.
+For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol SDK on how to decode these bytes into floats.
 
 .. code-block:: bash
 

@@ -201,7 +201,9 @@ catkin_make
 <div class="section" id="bpl-passthrough">
 <h3>bpl_passthrough<a class="headerlink" href="#bpl-passthrough" title="Permalink to this headline">¶</a></h3>
 <p>The BPL Passthrough is the core package that allows communication to bpl products.
-You can connect to a manipulator via serial or UDP (Bravo arms only).</p>
+You can connect to a manipulator via serial or UDP (Bravo arms only).
+The <cite>bpl_msgs/Packet</cite> data field is structured as a list of uint8. This is a list of bytes.
+For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol SDK on how to decode these bytes into floats.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_passthrough udp_passthrough.launch
 </pre></div>
 </div>
