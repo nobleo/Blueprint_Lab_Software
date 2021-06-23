@@ -36,7 +36,7 @@ bpl_passthrough
 ^^^^^^^^^^^^^^^^^^^^^^^^
 The BPL Passthrough is the core package that allows communication to bpl products.
 You can connect to a manipulator via serial or UDP (Bravo arms only).
-The `bpl_msgs/Packet` data field is structured as a list of uint8. This is a list of bytes.
+The :code:`bpl_msgs/Packet` data field is structured as a list of uint8. This is a list of bytes.
 For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol SDK on how to decode these bytes into floats.
 
 .. code-block:: bash
@@ -51,26 +51,26 @@ or
 
 Published Topics
 """"""""""""""""""""""
-`/rx` (`bpl_msgs/Packet`) - Received Packets from the manipulator
+:code:`/rx` (:code:`bpl_msgs/Packet`) - Received Packets from the manipulator
 
 
 Subscribed Topics
 """"""""""""""""""""""
-`/tx` (`bpl_msgs/Packet`) - Packets that will be sent to the manipulator
+:code:`/tx` (:code:`bpl_msgs/Packet`) - Packets that will be sent to the manipulator
 
 Parameters - udp_passthrough.py
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-`ip_address` (string) - IP Address of the arm. (Defaults to 192.168.2.3)
+:code:`ip_address` (string) - IP Address of the arm. (Defaults to 192.168.2.3)
 
-`port` (int) - UDP Port of the arm. (Defaults to 6789)
+:code:`port` (int) - UDP Port of the arm. (Defaults to 6789)
 
 
 Parameters - serial_passthrough.py
 """""""""""""""""""""""""""""""""""""""""""""""""
-`serial_port` (string) - Serial Port to connect to the arm (Defaults to "/dev/ttyUSB0")
+:code:`serial_port` (string) - Serial Port to connect to the arm (Defaults to "/dev/ttyUSB0")
 
-`baudrate` (int) - UDP Port of the arm. (Defaults to 115200)
+:code:`baudrate` (int) - UDP Port of the arm. (Defaults to 115200)
 
 
 bpl_alpha_description

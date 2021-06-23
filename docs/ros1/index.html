@@ -202,7 +202,7 @@ catkin_make
 <h3>bpl_passthrough<a class="headerlink" href="#bpl-passthrough" title="Permalink to this headline">¶</a></h3>
 <p>The BPL Passthrough is the core package that allows communication to bpl products.
 You can connect to a manipulator via serial or UDP (Bravo arms only).
-The <cite>bpl_msgs/Packet</cite> data field is structured as a list of uint8. This is a list of bytes.
+The <code class="code docutils literal notranslate"><span class="pre">bpl_msgs/Packet</span></code> data field is structured as a list of uint8. This is a list of bytes.
 For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol SDK on how to decode these bytes into floats.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_passthrough udp_passthrough.launch
 </pre></div>
@@ -213,21 +213,21 @@ For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol S
 </div>
 <div class="section" id="published-topics">
 <h4>Published Topics<a class="headerlink" href="#published-topics" title="Permalink to this headline">¶</a></h4>
-<p><cite>/rx</cite> (<cite>bpl_msgs/Packet</cite>) - Received Packets from the manipulator</p>
+<p><code class="code docutils literal notranslate"><span class="pre">/rx</span></code> (<code class="code docutils literal notranslate"><span class="pre">bpl_msgs/Packet</span></code>) - Received Packets from the manipulator</p>
 </div>
 <div class="section" id="subscribed-topics">
 <h4>Subscribed Topics<a class="headerlink" href="#subscribed-topics" title="Permalink to this headline">¶</a></h4>
-<p><cite>/tx</cite> (<cite>bpl_msgs/Packet</cite>) - Packets that will be sent to the manipulator</p>
+<p><code class="code docutils literal notranslate"><span class="pre">/tx</span></code> (<code class="code docutils literal notranslate"><span class="pre">bpl_msgs/Packet</span></code>) - Packets that will be sent to the manipulator</p>
 </div>
 <div class="section" id="parameters-udp-passthrough-py">
 <h4>Parameters - udp_passthrough.py<a class="headerlink" href="#parameters-udp-passthrough-py" title="Permalink to this headline">¶</a></h4>
-<p><cite>ip_address</cite> (string) - IP Address of the arm. (Defaults to 192.168.2.3)</p>
-<p><cite>port</cite> (int) - UDP Port of the arm. (Defaults to 6789)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">ip_address</span></code> (string) - IP Address of the arm. (Defaults to 192.168.2.3)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">port</span></code> (int) - UDP Port of the arm. (Defaults to 6789)</p>
 </div>
 <div class="section" id="parameters-serial-passthrough-py">
 <h4>Parameters - serial_passthrough.py<a class="headerlink" href="#parameters-serial-passthrough-py" title="Permalink to this headline">¶</a></h4>
-<p><cite>serial_port</cite> (string) - Serial Port to connect to the arm (Defaults to “/dev/ttyUSB0”)</p>
-<p><cite>baudrate</cite> (int) - UDP Port of the arm. (Defaults to 115200)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">serial_port</span></code> (string) - Serial Port to connect to the arm (Defaults to “/dev/ttyUSB0”)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">baudrate</span></code> (int) - UDP Port of the arm. (Defaults to 115200)</p>
 </div>
 </div>
 <div class="section" id="bpl-alpha-description">
