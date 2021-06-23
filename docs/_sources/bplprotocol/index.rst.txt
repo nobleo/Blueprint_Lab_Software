@@ -39,7 +39,7 @@ Usage
     read_bytes, incomplete_bytes = BPLProtocol.packet_splitter(bytes)
 
     # Decode the bytes into a list of packets
-    packets = BPLProtocol.decode_packet(read_bytes)
+    packets = BPLProtocol.parse_packet(read_bytes)
 
     # Option 2, Reading packets from the packet reader
 
