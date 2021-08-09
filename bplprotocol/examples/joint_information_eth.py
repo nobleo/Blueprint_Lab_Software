@@ -2,8 +2,7 @@ from bplprotocol import BPLProtocol, PacketID, PacketReader
 
 import time
 
-# install pyserial with pip install pyserial
-import serial
+import socket
 
 
 if __name__ == '__main__':
@@ -14,7 +13,11 @@ if __name__ == '__main__':
 
     request_timeout = 0.5  # Seconds
 
-    serial_port = serial.Serial(serial_port_name, baudrate=115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0)
+    MANIPULATOR_IP_ADDRESS = 'localhost'
+    MANIPULATOR_PORT = 6789
+    manipulator_address = (MANIPULATOR_IP_ADDRESS, MANIPULATOR_PORT)
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     # Requesting Information
     device_id = 0x01  # Jaws
@@ -22,7 +25,7 @@ if __name__ == '__main__':
     print(f"Requesting Position from Device {device_id}")
 
     # Request POSITION from the jaws
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.POSITION]))
+    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.POSITION]), manipulator_address)
 
     start_time = time.time()
 
@@ -30,7 +33,7 @@ if __name__ == '__main__':
     while True:
         time.sleep(0.0001)
         try:
-            read_data = serial_port.read()
+            read_data, remote_address = sock.recvfrom(4096)
         except BaseException:
             read_data = b''
         if read_data != b'':
@@ -56,13 +59,13 @@ if __name__ == '__main__':
 
     print(f"Requesting Software Version from Device {device_id}")
     # Request the Software version from the jaws
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.SOFTWARE_VERSION]))
+    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.SOFTWARE_VERSION]), manipulator_address)
     software_version = None
     start_time = time.time()
     while True:
         time.sleep(0.0001)
         try:
-            read_data = serial_port.read()
+            read_data, remote_address = sock.recvfrom(4096)
         except BaseException:
             read_data = b''
         if read_data != b'':
@@ -88,7 +91,7 @@ if __name__ == '__main__':
 
     print(f"Requesting Position and Velocity from Device {device_id}")
 
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.VELOCITY, PacketID.POSITION]))
+    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.VELOCITY, PacketID.POSITION]), manipulator_address)
 
     start_time = time.time()
     position = None
@@ -96,7 +99,7 @@ if __name__ == '__main__':
     while True:
         time.sleep(0.0001)
         try:
-            read_data = serial_port.read()
+            read_data, remote_address = sock.recvfrom(4096)
         except BaseException:
             read_data = b''
         if read_data != b'':
