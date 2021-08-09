@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     device_id = 0x02  # Joint B
 
-    MANIPULATOR_IP_ADDRESS = 'localhost'
+    MANIPULATOR_IP_ADDRESS = '192.168.2.4'
     MANIPULATOR_PORT = 6789
     manipulator_address = (MANIPULATOR_IP_ADDRESS, MANIPULATOR_PORT)
 

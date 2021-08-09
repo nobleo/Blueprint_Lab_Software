@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     request_timeout = 0.5  # Seconds
 
-    MANIPULATOR_IP_ADDRESS = 'localhost'
+    MANIPULATOR_IP_ADDRESS = '192.168.2.4'
     MANIPULATOR_PORT = 6789
     manipulator_address = (MANIPULATOR_IP_ADDRESS, MANIPULATOR_PORT)
 
