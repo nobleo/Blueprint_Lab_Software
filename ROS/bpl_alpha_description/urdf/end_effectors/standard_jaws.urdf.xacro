@@ -13,22 +13,28 @@
         </joint>
 
         <link name="${name}_base_link">
-          <visual>
-            <geometry>
-              <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-124.stl"/>
-            </geometry>
-            <material name="${name}_black"/>
-          </visual>
+            <visual>
+                <geometry>
+                    <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-124.stl"/>
+                </geometry>
+                <material name="${name}_black"/>
+            </visual>
         </link>
 
         <link name="${name}_rs1_130_link">
-          <visual>
-            <geometry>
-              <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-130.stl"/>
-            </geometry>
-            <material name="${name}_black"/>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-          </visual>
+            <visual>
+                <geometry>
+                    <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-130.stl"/>
+                </geometry>
+                <material name="${name}_black"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.012 0.03 0.09"/>
+                </geometry>
+                <origin xyz="0.0 -0.008 0.045" rpy="0 0 0"/>
+            </collision>
         </link>
 
         <joint name="${name}_rs1_130_joint" type="revolute">
@@ -43,13 +49,20 @@
 
 
         <link name="${name}_rs1_139_link">
-          <visual>
-            <geometry>
-              <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-139.stl"/>
-            </geometry>
-            <material name="${name}_black"/>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-          </visual>
+            <visual>
+                <geometry>
+                    <mesh filename="package://bpl_alpha_description/meshes/end_effectors/RS1-139.stl"/>
+                </geometry>
+                <material name="${name}_black"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <box size="0.012 0.03 0.09"/>
+                </geometry>
+                <origin xyz="0.0 0.008 0.045" rpy="0 0 0"/>
+            </collision>
         </link>
 
         <joint name="${name}_rs1_139_joint" type="revolute">

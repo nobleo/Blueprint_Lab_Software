@@ -70,7 +70,7 @@ Parameters - serial_passthrough.py
 """""""""""""""""""""""""""""""""""""""""""""""""
 :code:`serial_port` (string) - Serial Port to connect to the arm (Defaults to "/dev/ttyUSB0")
 
-:code:`baudrate` (int) - UDP Port of the arm. (Defaults to 115200)
+:code:`baudrate` (int) - Baudrate port of the serial connection. (Defaults to 115200)
 
 
 bpl_alpha_description
@@ -78,8 +78,35 @@ bpl_alpha_description
 
 The BPL Alpha Description package contains the Universal Robot Description File (URDF) files of the alpha range of manipulators.
 
-To view an Alpha 5 urdf:
+Supported Products:
+
+- RA-5001 - Reach Alpha 5
+
+To view an Alpha 5 URDF:
 
 .. code-block:: bash
 
    roslaunch bpl_alpha_description view_urdf.launch
+
+
+bpl_bravo_description
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The BPL Bravo Description package contains the Universal Robot Description File (URDF) files for the bravo range of manipulators.
+
+Supported Products:
+
+- RB-7001 - Reach Bravo 7
+- RB-5001 - Reach Bravo 5
+
+To view an Alpha 7 URDF:
+
+.. code-block:: bash
+
+    roslaunch bpl_bravo_description view_bravo_7.launch
+
+To view an Bravo 5 URDF:
+
+.. code-block:: bash
+
+    roslaunch bpl_bravo_description view_bravo_5.launch

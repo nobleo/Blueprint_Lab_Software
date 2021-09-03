@@ -101,6 +101,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bpl-alpha-description">bpl_alpha_description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bpl-bravo-description">bpl_bravo_description</a></li>
 </ul>
 </li>
 </ul>
@@ -233,8 +234,29 @@ For incoming floats, they will be encoded as 4 bytes. Refer to the bplprotocol S
 <div class="section" id="bpl-alpha-description">
 <h3>bpl_alpha_description<a class="headerlink" href="#bpl-alpha-description" title="Permalink to this headline">¶</a></h3>
 <p>The BPL Alpha Description package contains the Universal Robot Description File (URDF) files of the alpha range of manipulators.</p>
-<p>To view an Alpha 5 urdf:</p>
+<p>Supported Products:</p>
+<ul class="simple">
+<li><p>RA-5001 - Reach Alpha 5</p></li>
+</ul>
+<p>To view an Alpha 5 URDF:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_alpha_description view_urdf.launch
+</pre></div>
+</div>
+</div>
+<div class="section" id="bpl-bravo-description">
+<h3>bpl_bravo_description<a class="headerlink" href="#bpl-bravo-description" title="Permalink to this headline">¶</a></h3>
+<p>The BPL Bravo Description package contains the Universal Robot Description File (URDF) files for the bravo range of manipulators.</p>
+<p>Supported Products:</p>
+<ul class="simple">
+<li><p>RB-7001 - Reach Bravo 7</p></li>
+<li><p>RB-5001 - Reach Bravo 5</p></li>
+</ul>
+<p>To view an Alpha 7 URDF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_bravo_description view_bravo_7.launch
+</pre></div>
+</div>
+<p>To view an Bravo 5 URDF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_bravo_description view_bravo_5.launch
 </pre></div>
 </div>
 </div>
