@@ -158,7 +158,29 @@
             
   <div class="section" id="ros1-drivers">
 <h1>ROS1 Drivers<a class="headerlink" href="#ros1-drivers" title="Permalink to this headline">¶</a></h1>
-<p>ROS1 Drivers are a work in progress</p>
+<p>Here are details for usage of the Blueprint lab ROS1 Packages</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install ROS please follow instructions at <a class="reference external" href="http://wiki.ros.org/ROS/Installation">http://wiki.ros.org/ROS/Installation</a>.</p>
+<p>First clone the repository to your workspace</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/catkin_workspace/src
+git clone https://github.com/blueprint-lab/Blueprint_Lab_Software.git
+</pre></div>
+</div>
+<p>Now install the bplprotocol python package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Blueprint_Lab_Software/bplprotocol
+pip install .
+</pre></div>
+</div>
+<p>To build all packages</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/catkin_ws
+catkin_make
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

@@ -99,6 +99,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
 </ul>
 
@@ -201,7 +202,7 @@ pip3 install .
 <span class="n">read_bytes</span><span class="p">,</span> <span class="n">incomplete_bytes</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">packet_splitter</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
 
 <span class="c1"># Decode the bytes into a list of packets</span>
-<span class="n">packets</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">decode_packet</span><span class="p">(</span><span class="n">read_bytes</span><span class="p">)</span>
+<span class="n">packets</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">parse_packet</span><span class="p">(</span><span class="n">read_bytes</span><span class="p">)</span>
 
 <span class="c1"># Option 2, Reading packets from the packet reader</span>
 

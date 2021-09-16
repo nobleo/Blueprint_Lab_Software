@@ -1,16 +1,12 @@
 from bplprotocol import BPLProtocol, PacketID, PacketReader
 
-
-# install pyserial with pip install pyserial
-
 import time
 
+# install pyserial with pip install pyserial
 import serial
 
 
 if __name__ == '__main__':
-
-    frequency = 20
 
     packet_reader = PacketReader()
 
@@ -74,7 +70,7 @@ if __name__ == '__main__':
             if packets:
                 for packet in packets:
                     read_device_id, read_packet_id, data_bytes = packet
-                    if read_device_id == device_id and read_packet_id == PacketID.POSITION:
+                    if read_device_id == device_id and read_packet_id == PacketID.SOFTWARE_VERSION:
 
                         # software version is reported as a list of integers
                         software_version = list(data_bytes)
@@ -109,10 +105,9 @@ if __name__ == '__main__':
                 for packet in packets:
                     read_device_id, read_packet_id, data_bytes = packet
                     if read_device_id == device_id and read_packet_id in [PacketID.VELOCITY, PacketID.POSITION]:
-                        # software version is reported as a list of integers
-                        if read_packet_id == position:
+                        if read_packet_id == PacketID.POSITION:
                             position = BPLProtocol.decode_floats(data_bytes)[0]
-                        elif read_packet_id == velocity:
+                        elif read_packet_id == PacketID.VELOCITY:
                             velocity = BPLProtocol.decode_floats(data_bytes)[0]
 
                 if position is not None and velocity is not None:
