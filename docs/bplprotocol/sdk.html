@@ -1,73 +1,34 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>BPL Protocol SDK &mdash; Blueprint Lab Software 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ROS" href="../ros1/index.html" />
-    <link rel="prev" title="BPL Protocol" href="index.html" /> 
+    <link rel="next" title="Documentation" href="../documentation/index.html" />
+    <link rel="prev" title="Setting Heartbeat Packets" href="heartbeat_set.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> Blueprint Lab Software
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,19 +36,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">BPL Protocol</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#python-installation">Python Installation</a></li>
@@ -99,226 +49,183 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Blueprint Lab Software</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="index.html">BPL Protocol</a> &raquo;</li>
-        
       <li>BPL Protocol SDK</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/bplprotocol/sdk.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-bplprotocol">
-<span id="bpl-protocol-sdk"></span><h1>BPL Protocol SDK<a class="headerlink" href="#module-bplprotocol" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-bplprotocol">
+<span id="bpl-protocol-sdk"></span><h1>BPL Protocol SDK<a class="headerlink" href="#module-bplprotocol" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="bplprotocol.PacketID">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">PacketID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bplprotocol.html#PacketID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketID" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">PacketID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bplprotocol.html#PacketID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketID" title="Permalink to this definition"></a></dt>
 <dd><p>Class containing BPL packet IDs.
 Look in The Serial Protocol Document for comprehensive details on packet ids.</p>
 <p>Packet IDs:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.MODE">
-<span class="sig-name descname"><span class="pre">MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MODE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODE" title="Permalink to this definition"></a></dt>
 <dd><p>1 byte - Describes the Mode of a device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.VELOCITY">
-<span class="sig-name descname"><span class="pre">VELOCITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">VELOCITY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - Describes the velocity of a device. Radians/s for angular joints. mm/s for linear joints.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.POSITION">
-<span class="sig-name descname"><span class="pre">POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - Describes the position of a device. In radians or mm</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.CURRENT">
-<span class="sig-name descname"><span class="pre">CURRENT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CURRENT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - Describes the current drawn by a device in mA</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.RELATIVE_POSITION">
-<span class="sig-name descname"><span class="pre">RELATIVE_POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">14</span></em><a class="headerlink" href="#bplprotocol.PacketID.RELATIVE_POSITION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RELATIVE_POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">14</span></em><a class="headerlink" href="#bplprotocol.PacketID.RELATIVE_POSITION" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - When sent sets the relative position of actuator. The actuator will move from its current position the amount specified in the data.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.INDEXED_POSITION">
-<span class="sig-name descname"><span class="pre">INDEXED_POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">13</span></em><a class="headerlink" href="#bplprotocol.PacketID.INDEXED_POSITION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">INDEXED_POSITION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">13</span></em><a class="headerlink" href="#bplprotocol.PacketID.INDEXED_POSITION" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - On first receiving indexed position an offset is created between the indexed position demand received and the current position. New indexed positions packets then move the actuators relative to the initial indexed position.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.REQUEST">
-<span class="sig-name descname"><span class="pre">REQUEST</span></span><em class="property"> <span class="pre">=</span> <span class="pre">96</span></em><a class="headerlink" href="#bplprotocol.PacketID.REQUEST" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">REQUEST</span></span><em class="property"> <span class="pre">=</span> <span class="pre">96</span></em><a class="headerlink" href="#bplprotocol.PacketID.REQUEST" title="Permalink to this definition"></a></dt>
 <dd><p>bytes - Request a packet ID. On receiving the command, the device will send the packet corresponding to the packet IDs in the data field.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.SERIAL_NUMBER">
-<span class="sig-name descname"><span class="pre">SERIAL_NUMBER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">97</span></em><a class="headerlink" href="#bplprotocol.PacketID.SERIAL_NUMBER" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SERIAL_NUMBER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">97</span></em><a class="headerlink" href="#bplprotocol.PacketID.SERIAL_NUMBER" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - The unique serial number of the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.MODEL_NUMBER">
-<span class="sig-name descname"><span class="pre">MODEL_NUMBER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">98</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODEL_NUMBER" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MODEL_NUMBER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">98</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODEL_NUMBER" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - The model number of the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.TEMPERATURE">
-<span class="sig-name descname"><span class="pre">TEMPERATURE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">102</span></em><a class="headerlink" href="#bplprotocol.PacketID.TEMPERATURE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TEMPERATURE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">102</span></em><a class="headerlink" href="#bplprotocol.PacketID.TEMPERATURE" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - The internal temperature in Celsius</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.SOFTWARE_VERSION">
-<span class="sig-name descname"><span class="pre">SOFTWARE_VERSION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">108</span></em><a class="headerlink" href="#bplprotocol.PacketID.SOFTWARE_VERSION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SOFTWARE_VERSION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">108</span></em><a class="headerlink" href="#bplprotocol.PacketID.SOFTWARE_VERSION" title="Permalink to this definition"></a></dt>
 <dd><p>3 bytes - The software version on the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_POS">
-<span class="sig-name descname"><span class="pre">KM_END_POS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">161</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_POS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">KM_END_POS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">161</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_POS" title="Permalink to this definition"></a></dt>
 <dd><p>6 floats - Request the current end effector position. (X, Y, Z, Y, P, R) in mm and radians. Only for kinematic enabled arms.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_VEL">
-<span class="sig-name descname"><span class="pre">KM_END_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">162</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">KM_END_VEL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">162</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL" title="Permalink to this definition"></a></dt>
 <dd><p>6 floats - Demand the end effector velocity (XYZ, RZ, RY, RX) in mm/s and rads/s. Only for kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_VEL_LOCAL">
-<span class="sig-name descname"><span class="pre">KM_END_VEL_LOCAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">203</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL_LOCAL" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">KM_END_VEL_LOCAL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">203</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL_LOCAL" title="Permalink to this definition"></a></dt>
 <dd><p>6 floats - Demand the end effector velocity relative to the end effector. (XYZ, RZ, RY, RX) in mm/s and rads/s. Only fora kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.KM_BOX_OBSTACLE_02">
-<span class="sig-name descname"><span class="pre">KM_BOX_OBSTACLE_02</span></span><em class="property"> <span class="pre">=</span> <span class="pre">165</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_BOX_OBSTACLE_02" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">KM_BOX_OBSTACLE_02</span></span><em class="property"> <span class="pre">=</span> <span class="pre">165</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_BOX_OBSTACLE_02" title="Permalink to this definition"></a></dt>
 <dd><p>6 floats - (X1, Y1, Z1, X2, Y2, Z2) mm. Box obstacle defined by 2 opposite corners of a rectangular prism.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.KM_CYLINDER_OBSTACLE_02">
-<span class="sig-name descname"><span class="pre">KM_CYLINDER_OBSTACLE_02</span></span><em class="property"> <span class="pre">=</span> <span class="pre">171</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_CYLINDER_OBSTACLE_02" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">KM_CYLINDER_OBSTACLE_02</span></span><em class="property"> <span class="pre">=</span> <span class="pre">171</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_CYLINDER_OBSTACLE_02" title="Permalink to this definition"></a></dt>
 <dd><p>7 floats - (X1, Y1, Z1, X2, Y2, Z2, R) mm. Cylinder obstacle defined by 2 opposite centers of a cylinder. R defining the radius of the cylinder</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.VOLTAGE">
-<span class="sig-name descname"><span class="pre">VOLTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">144</span></em><a class="headerlink" href="#bplprotocol.PacketID.VOLTAGE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">VOLTAGE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">144</span></em><a class="headerlink" href="#bplprotocol.PacketID.VOLTAGE" title="Permalink to this definition"></a></dt>
 <dd><p>1 float - The supply voltage in Volts</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.SAVE">
-<span class="sig-name descname"><span class="pre">SAVE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">80</span></em><a class="headerlink" href="#bplprotocol.PacketID.SAVE" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SAVE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">80</span></em><a class="headerlink" href="#bplprotocol.PacketID.SAVE" title="Permalink to this definition"></a></dt>
 <dd><p>1 byte - Send this to save user configurable settings on a device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.HEARTBEAT_FREQUENCY">
-<span class="sig-name descname"><span class="pre">HEARTBEAT_FREQUENCY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">146</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_FREQUENCY" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">HEARTBEAT_FREQUENCY</span></span><em class="property"> <span class="pre">=</span> <span class="pre">146</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_FREQUENCY" title="Permalink to this definition"></a></dt>
 <dd><p>1 byte - set the frequency of a packet to be sent from a device.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.HEARTBEAT_SET">
-<span class="sig-name descname"><span class="pre">HEARTBEAT_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">145</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_SET" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">HEARTBEAT_SET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">145</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_SET" title="Permalink to this definition"></a></dt>
 <dd><p>10 bytes - Specify the Packet IDs to be sent via heartbeat.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.POSITION_LIMITS">
-<span class="sig-name descname"><span class="pre">POSITION_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">16</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION_LIMITS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">POSITION_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">16</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION_LIMITS" title="Permalink to this definition"></a></dt>
 <dd><p>2 floats - Maximum and Minimum positions of the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.VELOCITY_LIMITS">
-<span class="sig-name descname"><span class="pre">VELOCITY_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">17</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY_LIMITS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">VELOCITY_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">17</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY_LIMITS" title="Permalink to this definition"></a></dt>
 <dd><p>2 floats - Maximum and Minimum velocities of the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.CURRENT_LIMITS">
-<span class="sig-name descname"><span class="pre">CURRENT_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">18</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT_LIMITS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CURRENT_LIMITS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">18</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT_LIMITS" title="Permalink to this definition"></a></dt>
 <dd><p>2 floats - Maximum and Minimum currents of the device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="bplprotocol.PacketID.ATI_FT_READING">
-<span class="sig-name descname"><span class="pre">ATI_FT_READING</span></span><em class="property"> <span class="pre">=</span> <span class="pre">216</span></em><a class="headerlink" href="#bplprotocol.PacketID.ATI_FT_READING" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ATI_FT_READING</span></span><em class="property"> <span class="pre">=</span> <span class="pre">216</span></em><a class="headerlink" href="#bplprotocol.PacketID.ATI_FT_READING" title="Permalink to this definition"></a></dt>
 <dd><p>6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it</p>
 </dd></dl>
 
@@ -326,11 +233,11 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">BPLProtocol</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">BPLProtocol</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol" title="Permalink to this definition"></a></dt>
 <dd><p>Class used to encode and decode BPL packets.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.packet_splitter">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">packet_splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.packet_splitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.packet_splitter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">packet_splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.packet_splitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.packet_splitter" title="Permalink to this definition"></a></dt>
 <dd><p>Split packets coming in along bpl protocol, Packets are split at b’0x00’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -344,7 +251,7 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.parse_packet">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">parse_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_in</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.parse_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.parse_packet" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">parse_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_in</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.parse_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.parse_packet" title="Permalink to this definition"></a></dt>
 <dd><p>Parse the packet returning a tuple of [int, int, bytes].
 If unable to parse the packet, then return 0,0,b’’.
 :param packet_in: bytes of a full packet
@@ -353,7 +260,7 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.encode_packet">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_packet" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_packet" title="Permalink to this definition"></a></dt>
 <dd><blockquote>
 <div><p>Encode the packet using the bpl protocol.</p>
 </div></blockquote>
@@ -373,7 +280,7 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.decode_floats">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">decode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.decode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.decode_floats" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">decode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.decode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.decode_floats" title="Permalink to this definition"></a></dt>
 <dd><p>Decode a received byte list, into a float list as specified by the bpl protocol</p>
 <p>Bytes are decoded into 32 bit floats.</p>
 <dl class="field-list simple">
@@ -388,7 +295,7 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.encode_floats">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bytes</span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_floats" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_floats" title="Permalink to this definition"></a></dt>
 <dd><p>Encode a list of floats into bytes</p>
 <p>Floats are encoded into 32 bits (4 bytes)</p>
 <dl class="field-list simple">
@@ -405,12 +312,12 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py class">
 <dt class="sig sig-object py" id="bplprotocol.PacketReader">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">PacketReader</span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">PacketReader</span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader" title="Permalink to this definition"></a></dt>
 <dd><p>Packet Reader
 Helper class to read and decode incoming bytes and account for the incomplete packets.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.PacketReader.receive_bytes">
-<span class="sig-name descname"><span class="pre">receive_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader.receive_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader.receive_bytes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">receive_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader.receive_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader.receive_bytes" title="Permalink to this definition"></a></dt>
 <dd><p>Decodes packets.
 Accounts for reading incomplete bytes.</p>
 <dl class="field-list simple">
@@ -425,54 +332,37 @@ Accounts for reading incomplete bytes.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../ros1/index.html" class="btn btn-neutral float-right" title="ROS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="BPL Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="heartbeat_set.html" class="btn btn-neutral float-left" title="Setting Heartbeat Packets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../documentation/index.html" class="btn btn-neutral float-right" title="Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, John Sumskas.
-
-    </p>
+    <p>&#169; Copyright 2021, John Sumskas.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
