@@ -77,7 +77,8 @@ Some code examples using the bplprotocol can be found under bplprotocol/examples
 .. toctree::
     :maxdepth: 3
 
-    setting_heartbeats
+    examples/setting_heartbeats
+    examples/force_torque_sensor
 
 
 SDK

@@ -1,4 +1,4 @@
-"""examples/set_heartbeat.py"""
+"""bplprotocol/examples/set_heartbeat.py"""
 
 from bplprotocol import BPLProtocol, PacketID, PacketReader
 

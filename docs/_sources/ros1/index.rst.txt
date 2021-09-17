@@ -99,7 +99,7 @@ Supported Products:
 - RB-7001 - Reach Bravo 7
 - RB-5001 - Reach Bravo 5
 
-To view an Alpha 7 URDF:
+To view an Bravo 7 URDF:
 
 .. code-block:: bash
 

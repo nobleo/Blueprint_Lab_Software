@@ -14,10 +14,10 @@ Frequency can be set to a whole number between 0 - 255 Hz.
 
 The following is an example of setting the heartbeat over a UDP Connection.
 
-.. literalinclude:: ../../../bplprotocol/examples/set_heartbeat.py
-    :lines: 0-35
+.. literalinclude:: ../../../../bplprotocol/examples/set_heartbeat.py
+    :lines: 1-35
 
-The set heartbeat packets are sent automatically at the specified frequency. They can be ready by listening to the UDP Socket.
+The set heartbeat packets are sent automatically at the specified frequency. They can be read by listening to the UDP Socket.
 
-.. literalinclude:: ../../../bplprotocol/examples/set_heartbeat.py
-    :lines: 35-53
+.. literalinclude:: ../../../../bplprotocol/examples/set_heartbeat.py
+    :lines: 36-52
