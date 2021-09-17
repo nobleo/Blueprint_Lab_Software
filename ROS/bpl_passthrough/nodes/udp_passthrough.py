@@ -19,8 +19,8 @@ class BPLPassthroughNode:
         rospy.init_node('udp_passthrough', anonymous=True)
         self.tx_subscriber = rospy.Subscriber("tx", Packet, self.tx_transmit)
 
-        self.ip_address = rospy.get_param('ip_address', default='192.168.2.3')
-        self.port = rospy.get_param('port', default=6789)
+        self.ip_address = rospy.get_param('~ip_address', default='192.168.2.3')
+        self.port = rospy.get_param('~port', default=6789)
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.setblocking(False)
@@ -40,14 +40,19 @@ class BPLPassthroughNode:
 
     def rx_receive(self):
         packet_reader = PacketReader()
-        rate = rospy.Rate(10000)
+        # rate = rospy.Rate(10000)
         while not rospy.is_shutdown():
-            try:
-                data, address = self.sock.recvfrom(4096)
-            except socket.error as e:
-                continue
+
+            data = bytearray([])
+            for i in range(100):
+                try:
+                    _data, address = self.sock.recvfrom(4096)
+
+                    data = data + bytearray(_data)
+                except socket.error as e:
+                    break
             if data:
-                data = bytearray(data)
+                # data = bytearray(data)
                 packets = packet_reader.receive_bytes(data)
 
                 for packet in packets:
@@ -59,11 +64,11 @@ class BPLPassthroughNode:
                     ros_packet.device_id = device_id
                     ros_packet.packet_id = packet_id
                     ros_packet.data = list(data)
-                    print(data)
-                    rospy.loginfo("Publishing {}".format(ros_packet))
+                    # print(data)
+                    # rospy.loginfo("Publishing {}".format(ros_packet))
                     self.rx_publisher.publish(ros_packet)
 
-            rate.sleep()
+            # rate.sleep()
             pass
 
 

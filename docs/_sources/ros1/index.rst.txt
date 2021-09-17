@@ -72,6 +72,12 @@ Parameters - serial_passthrough.py
 
 :code:`baudrate` (int) - Baudrate port of the serial connection. (Defaults to 115200)
 
+Examples
+"""""""""""""""""""""""""""""""""""""""""""""""""
+.. toctree::
+    :maxdepth: 3
+
+    bpl_passthrough/request_joint_positions
 
 bpl_alpha_description
 ^^^^^^^^^^^^^^^^^^^^^^^^

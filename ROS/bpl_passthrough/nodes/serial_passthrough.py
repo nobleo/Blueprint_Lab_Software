@@ -11,21 +11,23 @@ import serial
 
 from bplprotocol import PacketReader, BPLProtocol
 
-serial_port = rospy.get_param('serial_port', default='/dev/ttyUSB1')
-baudrate = rospy.get_param('baudrate', default=115200)
-parity = rospy.get_param('parity', default=serial.PARITY_NONE)
-stop_bits = rospy.get_param('stop_bits', default=serial.STOPBITS_ONE)
 
 
 class BPLPassthroughNode:
 
     def __init__(self):
+
         self.rx_publisher = rospy.Publisher('rx', Packet, queue_size=100)
         rospy.init_node('serial_passthrough', anonymous=True)
+
+        serial_port = rospy.get_param('~serial_port', default='/dev/ttyUSB1')
+        baudrate = rospy.get_param('~baudrate', default=115200)
+        parity = rospy.get_param('~parity', default=serial.PARITY_NONE)
+        stop_bits = rospy.get_param('~stop_bits', default=serial.STOPBITS_ONE)
+
         self.tx_subscriber = rospy.Subscriber("tx", Packet, self.tx_transmit)
 
         try:
-            # rospy.loginfo("Opening serial port {}".format(serial_port))
             self.serial_port = serial.Serial(serial_port, baudrate=baudrate, parity=parity,
                                     stopbits=stop_bits, timeout=0)
             rospy.loginfo("Opened serial port {}".format(serial_port))
@@ -50,7 +52,7 @@ class BPLPassthroughNode:
 
     def rx_receive(self):
         packet_reader = PacketReader()
-        rate = rospy.Rate(10000)
+        # rate = rospy.Rate(10000)
         while not rospy.is_shutdown():
 
             try:
@@ -71,11 +73,8 @@ class BPLPassthroughNode:
                     ros_packet.device_id = device_id
                     ros_packet.packet_id = packet_id
                     ros_packet.data = list(data)
-                    print(data)
-                    rospy.loginfo("Publishing {}".format(ros_packet))
                     self.rx_publisher.publish(ros_packet)
             # Read from serial and transmit
-            rate.sleep()
             pass
 
 

@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Blueprint Lab Software'
-copyright = '2021, John Sumskas'
+copyright = '2021, Blueprintlab'
 author = 'John Sumskas'
 
 # The full version, including alpha/beta/rc tags
@@ -35,7 +35,8 @@ extensions = ["sphinx_rtd_theme",
               'sphinx.ext.autodoc',
               'sphinx.ext.coverage',
               'sphinx.ext.napoleon',
-              'sphinx.ext.viewcode']
+              'sphinx.ext.viewcode',
+              'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
