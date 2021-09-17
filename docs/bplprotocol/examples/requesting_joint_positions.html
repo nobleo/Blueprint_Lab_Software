@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Setting Heartbeats &mdash; Blueprint Lab Software 0.0.1 documentation</title>
+  <title>Requesting Joint Positions &mdash; Blueprint Lab Software 0.0.1 documentation</title>
   
 
   
@@ -40,9 +40,7 @@
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Accessing the Force Torque Sensor" href="force_torque_sensor.html" />
-    <link rel="prev" title="BPL Protocol" href="../index.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,18 +86,8 @@
             
             
               <p class="caption"><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">BPL Protocol</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#python-installation">Python Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#usage">Usage</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#examples">Examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting Heartbeats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="force_torque_sensor.html">Accessing the Force Torque Sensor</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#sdk">SDK</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BPL Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ros1/index.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/index.html">Documentation</a></li>
 </ul>
@@ -150,15 +138,13 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">BPL Protocol</a> &raquo;</li>
-        
-      <li>Setting Heartbeats</li>
+      <li>Requesting Joint Positions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/bplprotocol/examples/setting_heartbeats.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/bplprotocol/examples/requesting_joint_positions.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -171,72 +157,74 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="setting-heartbeats">
-<h1>Setting Heartbeats<a class="headerlink" href="#setting-heartbeats" title="Permalink to this headline">¶</a></h1>
-<p>Joints can be set to publish data at a set frequency using heartbeat packets.</p>
-<p>Up to 10 packets can be set a a heartbeat per device.
-Frequency can be set to a whole number between 0 - 255 Hz.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Devices have been tested to support a maximum of 4 heartbeat packets at 255 Hz. Behaviour is undefined for values
-greater than this.</p>
-</div>
-<p>The following is an example of setting the heartbeat over a UDP Connection.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;bplprotocol/examples/set_heartbeat.py&quot;&quot;&quot;</span>
+  <div class="section" id="requesting-joint-positions">
+<h1>Requesting Joint Positions<a class="headerlink" href="#requesting-joint-positions" title="Permalink to this headline">¶</a></h1>
+<p>A devices information can be requested by either individually requesting the joint via its device id,
+or by requesting information from all devices using a broadcast 0xFF.</p>
+<p>This examples shows how to efficiently request a joints positions using Broadcast Requests.</p>
+<dl class="simple">
+<dt>..note::</dt><dd><p>In testing an arms joint positions was able to be requested at 400 Hz over a UDP Connection to the Bravo Base Board.</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;bplprotocol/examples/requesting_joints_positions_udp.py</span>
+<span class="sd">Example to request the Joint positions from the arm.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
 <span class="kn">import</span> <span class="nn">time</span>
-
 <span class="kn">from</span> <span class="nn">bplprotocol</span> <span class="kn">import</span> <span class="n">BPLProtocol</span><span class="p">,</span> <span class="n">PacketID</span><span class="p">,</span> <span class="n">PacketReader</span>
-
 <span class="kn">import</span> <span class="nn">socket</span>
 
-<span class="n">MANIPULATOR_IP_ADDRESS</span> <span class="o">=</span> <span class="s2">&quot;192.168.2.4&quot;</span>
+<span class="n">MANIPULATOR_IP_ADDRESS</span> <span class="o">=</span> <span class="s2">&quot;192.168.2.192&quot;</span>
 <span class="n">MANIPULATOR_PORT</span> <span class="o">=</span> <span class="mi">6789</span>
-
-<span class="n">HEARTBEAT_PACKETS</span> <span class="o">=</span> <span class="p">[</span><span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">VELOCITY</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="n">DEVICE_IDS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 
-<span class="n">FREQUENCY</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">REQUEST_FREQUENCY</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
     <span class="n">manipulator_address</span> <span class="o">=</span> <span class="p">(</span><span class="n">MANIPULATOR_IP_ADDRESS</span><span class="p">,</span> <span class="n">MANIPULATOR_PORT</span><span class="p">)</span>
     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
-
     <span class="n">sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">packet_to_send</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+    <span class="n">pr</span> <span class="o">=</span> <span class="n">PacketReader</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">device_id</span> <span class="ow">in</span> <span class="n">DEVICE_IDS</span><span class="p">:</span>
-
-        <span class="n">heartbeat_packets_set</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="n">device_id</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">HEARTBEAT_SET</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">HEARTBEAT_PACKETS</span><span class="p">))</span>
-        <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">heartbeat_packets_set</span><span class="p">,</span> <span class="n">manipulator_address</span><span class="p">)</span>
-
-        <span class="n">heartbeat_frequency_set</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="n">device_id</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">HEARTBEAT_FREQUENCY</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">FREQUENCY</span><span class="p">]))</span>
-        <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">heartbeat_frequency_set</span><span class="p">,</span> <span class="n">manipulator_address</span><span class="p">)</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heartbeat set for Device 0x</span><span class="si">{</span><span class="n">device_id</span><span class="si">:</span><span class="s2">X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p>The set heartbeat packets are sent automatically at the specified frequency. They can be read by listening to the UDP Socket.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-    <span class="c1"># Read the corresponding packets from the TX2.</span>
+    <span class="c1"># Device_id 0XFF is broadcast that is received by all devices.</span>
+    <span class="n">request_packet</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">PacketID</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">]))</span>
 
     <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">DEVICE_IDS</span><span class="p">)</span>
-    <span class="n">pr</span> <span class="o">=</span> <span class="n">PacketReader</span><span class="p">()</span>
+
+    <span class="n">next_req_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">REQUEST_FREQUENCY</span><span class="p">)</span>
+
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="n">recv_bytes</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
             <span class="n">recv_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
-
         <span class="k">if</span> <span class="n">recv_bytes</span><span class="p">:</span>
             <span class="n">packets</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">receive_bytes</span><span class="p">(</span><span class="n">recv_bytes</span><span class="p">)</span>
-
             <span class="k">for</span> <span class="n">device_id</span><span class="p">,</span> <span class="n">packet_id</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">packet_id</span> <span class="o">==</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">:</span>
-                    <span class="n">position</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">decode_floats</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">device_id</span> <span class="ow">in</span> <span class="n">DEVICE_IDS</span><span class="p">:</span>
+                        <span class="n">position</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">decode_floats</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                        <span class="n">idx</span> <span class="o">=</span> <span class="n">DEVICE_IDS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
+
+                        <span class="n">positions</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">position</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+
+                        <span class="n">print_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">| Positions: &quot;</span>
+                        <span class="k">for</span> <span class="n">dev_id</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">DEVICE_IDS</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+                            <span class="n">print_string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dev_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s2">, &quot;</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">print_string</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">next_req_time</span><span class="p">:</span>
+            <span class="n">next_req_time</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">REQUEST_FREQUENCY</span><span class="p">)</span>
+            <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">request_packet</span><span class="p">,</span> <span class="n">manipulator_address</span><span class="p">)</span>
+
+
 </pre></div>
 </div>
 </div>
@@ -246,10 +234,6 @@ greater than this.</p>
            
           </div>
           <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="force_torque_sensor.html" class="btn btn-neutral float-right" title="Accessing the Force Torque Sensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="BPL Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
 
   <hr/>
 

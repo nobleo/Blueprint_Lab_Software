@@ -25,7 +25,7 @@ if __name__ == '__main__':
     print(f"Requesting Position from Device {device_id}")
 
     # Request POSITION from the jaws
-    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.POSITION]), manipulator_address)
+    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, bytes([PacketID.POSITION])), manipulator_address)
 
     start_time = time.time()
 
@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     print(f"Requesting Software Version from Device {device_id}")
     # Request the Software version from the jaws
-    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.SOFTWARE_VERSION]), manipulator_address)
+    sock.sendto(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, bytes([PacketID.SOFTWARE_VERSION])), manipulator_address)
     software_version = None
     start_time = time.time()
     while True:

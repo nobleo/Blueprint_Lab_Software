@@ -34,12 +34,14 @@ if __name__ == '__main__':
 
     pr = PacketReader()
 
+    readings = 0
     while True:
-        request_packet = BPLProtocol.encode_packet((0x0D, PacketID.REQUEST, bytes([PacketID.ATI_FT_READING])))
+        request_packet = BPLProtocol.encode_packet(0x0D, PacketID.REQUEST, bytes([PacketID.ATI_FT_READING]))
 
         start_time = time.time()
         sock.sendto(request_packet, manipulator_address)
 
+        packet_received = False
         while time.time() - start_time < request_timeout:
             try:
                 recv_bytes, address = sock.recvfrom(4096)
@@ -56,3 +58,10 @@ if __name__ == '__main__':
 
                         print(f"Received FT Reading: FX: {ft_readings[0]}, FY: {ft_readings[1]}, FZ: {ft_readings[2]} "
                               f"TX: {ft_readings[3]}, TY: {ft_readings[4]}, TZ: {ft_readings[5]}")
+
+                        readings += 1
+                        packet_received = True
+
+                if packet_received:
+                    break
+

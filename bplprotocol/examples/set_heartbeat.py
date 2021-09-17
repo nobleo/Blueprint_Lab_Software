@@ -1,4 +1,5 @@
 """bplprotocol/examples/set_heartbeat.py"""
+import time
 
 from bplprotocol import BPLProtocol, PacketID, PacketReader
 
@@ -11,7 +12,7 @@ HEARTBEAT_PACKETS = [PacketID.POSITION, PacketID.VELOCITY, 0, 0, 0, 0, 0, 0, 0, 
 
 DEVICE_IDS = [1, 2, 3, 4, 5, 6, 7]
 
-FREQUENCY = 100
+FREQUENCY = 10
 
 if __name__ == '__main__':
 
@@ -34,6 +35,8 @@ if __name__ == '__main__':
 
 
     # Read the corresponding packets from the TX2.
+
+    positions = ["-"] * len(DEVICE_IDS)
     pr = PacketReader()
     while True:
         try:
@@ -45,8 +48,18 @@ if __name__ == '__main__':
             packets = pr.receive_bytes(recv_bytes)
 
             for device_id, packet_id, data in packets:
-                if packet_id in PacketID.POSITION:
+                if packet_id == PacketID.POSITION:
                     position = BPLProtocol.decode_floats(data)[0]
 
-                    print(f"0x{device_id:X} Position: {position:.2f}")
+                    idx = DEVICE_IDS.index(device_id)
+
+                    positions[idx] = f"{position:.2f}"
+
+                    print_string = f"{time.perf_counter():.3f}| Positions: "
+                    for dev_id, position in zip(DEVICE_IDS, positions):
+                        print_string += f"{dev_id}: {position}, "
+                    print(print_string)
+                    # time.sleep(0.001)
+
+                    # print(f"\r0x{device_id:X} Position: {position:.2f}", end="", flush=True)
 

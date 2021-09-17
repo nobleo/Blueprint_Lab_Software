@@ -22,7 +22,7 @@ if __name__ == '__main__':
     print(f"Requesting Position from Device {device_id}")
 
     # Request POSITION from the jaws
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.POSITION]))
+    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, bytes([PacketID.POSITION])))
 
     start_time = time.time()
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     print(f"Requesting Software Version from Device {device_id}")
     # Request the Software version from the jaws
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.SOFTWARE_VERSION]))
+    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, bytes([PacketID.SOFTWARE_VERSION])))
     software_version = None
     start_time = time.time()
     while True:
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     print(f"Requesting Position and Velocity from Device {device_id}")
 
-    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, [PacketID.VELOCITY, PacketID.POSITION]))
+    serial_port.write(BPLProtocol.encode_packet(device_id, PacketID.REQUEST, bytes([PacketID.VELOCITY, PacketID.POSITION])))
 
     start_time = time.time()
     position = None

@@ -215,12 +215,14 @@
 
     <span class="n">pr</span> <span class="o">=</span> <span class="n">PacketReader</span><span class="p">()</span>
 
+    <span class="n">readings</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">request_packet</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">((</span><span class="mh">0x0D</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">PacketID</span><span class="o">.</span><span class="n">ATI_FT_READING</span><span class="p">])))</span>
+        <span class="n">request_packet</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0x0D</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">PacketID</span><span class="o">.</span><span class="n">ATI_FT_READING</span><span class="p">]))</span>
 
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">request_packet</span><span class="p">,</span> <span class="n">manipulator_address</span><span class="p">)</span>
 
+        <span class="n">packet_received</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">request_timeout</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">recv_bytes</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
@@ -235,9 +237,12 @@
                     <span class="k">if</span> <span class="n">packet_id</span> <span class="o">==</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">ATI_FT_READING</span><span class="p">:</span>
                         <span class="n">ft_readings</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">decode_floats</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received FT Reading: FX: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, FY: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, FZ: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
-                              <span class="sa">f</span><span class="s2">&quot;TX: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">, TY: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">, TZ: </span><span class="si">{</span><span class="n">ft_readings</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In testing the force torque sensor was able to be read at a rate of approximately 450 - 490 Hz.
+This was with a UDP Connection to the Base Board.</p>
 </div>
 </div>
 

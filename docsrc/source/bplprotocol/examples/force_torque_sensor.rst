@@ -20,3 +20,8 @@ Reading of the FT Sensor can be done by requesting the ATI_FT Packet from device
 
 .. literalinclude:: ../../../../bplprotocol/examples/ft_sensor.py
     :lines: 32 - 58
+
+
+.. note::
+    In testing the force torque sensor was able to be read at a rate of approximately 450 - 490 Hz.
+    This was with a UDP Connection to the Base Board.
