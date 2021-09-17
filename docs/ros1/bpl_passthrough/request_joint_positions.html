@@ -181,10 +181,9 @@
             
   <div class="section" id="using-bpl-passthrough-to-get-joint-positions">
 <h1>Using bpl_passthrough to get joint positions<a class="headerlink" href="#using-bpl-passthrough-to-get-joint-positions" title="Permalink to this headline">¶</a></h1>
-<p>This example shows demonstrates how to request read joint
+<p>This example demonstrates how to request read joint
 positions from joints on a manipulator.</p>
-<p>To launch this example run the example launch node.</p>
-<p>The example will request and printout the positions of a manipulators joint.</p>
+<p>To launch this example run the launch file.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Serial</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">UDP</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch bpl_passthrough request_joint_positions_serial.launch serial_port:<span class="o">=</span>/dev/ttyUSB0 frequency:<span class="o">=</span><span class="m">20</span>
 </pre></div>
@@ -193,7 +192,8 @@ positions from joints on a manipulator.</p>
 </pre></div>
 </div>
 </div></div>
-<p>The following script script communicates the to passthrough node via the <code class="code docutils literal notranslate"><span class="pre">/tx</span></code> and <code class="code docutils literal notranslate"><span class="pre">/rx</span></code> topics.
+<p>The example will request and printout the positions of a manipulators joints.</p>
+<p>The script communicates the to passthrough node via the <code class="code docutils literal notranslate"><span class="pre">/tx</span></code> and <code class="code docutils literal notranslate"><span class="pre">/rx</span></code> topics.
 It publishes request packets to the <code class="code docutils literal notranslate"><span class="pre">/tx</span></code> topic at a set frequency.
 It subscribes the to <code class="code docutils literal notranslate"><span class="pre">/rx</span></code> topic and listens for positions packets.</p>
 <div class="admonition note">

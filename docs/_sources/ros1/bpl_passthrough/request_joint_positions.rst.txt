@@ -1,12 +1,10 @@
 Using bpl_passthrough to get joint positions
 =========================================================================
 
-This example shows demonstrates how to request read joint
+This example demonstrates how to request read joint
 positions from joints on a manipulator.
 
-To launch this example run the example launch node.
-
-The example will request and printout the positions of a manipulators joint.
+To launch this example run the launch file.
 
 .. tabs::
 
@@ -22,8 +20,9 @@ The example will request and printout the positions of a manipulators joint.
 
             roslaunch bpl_passthrough request_joint_positions_udp.launch ip_address:=192.168.2.4 port:=6789 frequency:=20
 
+The example will request and printout the positions of a manipulators joints.
 
-The following script script communicates the to passthrough node via the :code:`/tx` and :code:`/rx` topics.
+The script communicates the to passthrough node via the :code:`/tx` and :code:`/rx` topics.
 It publishes request packets to the :code:`/tx` topic at a set frequency.
 It subscribes the to :code:`/rx` topic and listens for positions packets.
 
