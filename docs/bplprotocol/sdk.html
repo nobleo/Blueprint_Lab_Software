@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ROS" href="../ros1/index.html" />
-    <link rel="prev" title="Accessing the Force Torque Sensor" href="examples/force_torque_sensor.html" /> 
+    <link rel="prev" title="Voltage Threshold Parameters - Auto Stow on Voltage Change" href="examples/voltage_threshold_parameters.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,7 +88,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+              <p class="caption"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">BPL Protocol</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#python-installation">Python Installation</a></li>
@@ -323,6 +323,12 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 <dd><p>6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bplprotocol.PacketID.VOLTAGE_THRESHOLD_PARAMETERS">
+<span class="sig-name descname"><span class="pre">VOLTAGE_THRESHOLD_PARAMETERS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">153</span></em><a class="headerlink" href="#bplprotocol.PacketID.VOLTAGE_THRESHOLD_PARAMETERS" title="Permalink to this definition">¶</a></dt>
+<dd><p>4 floats - Parameters to define the voltage threshold parameters. Enabled (0 or 1), V_Min (V), V_Max (V), time (seconds).</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -331,7 +337,7 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 <dd><p>Class used to encode and decode BPL packets.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.packet_splitter">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">packet_splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.packet_splitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.packet_splitter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">packet_splitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.packet_splitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.packet_splitter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split packets coming in along bpl protocol, Packets are split at b’0x00’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -345,7 +351,7 @@ Look in The Serial Protocol Document for comprehensive details on packet ids.</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.parse_packet">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">parse_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_in</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.parse_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.parse_packet" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">parse_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packet_in</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.parse_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.parse_packet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the packet returning a tuple of [int, int, bytes].
 If unable to parse the packet, then return 0,0,b’’.
 :param packet_in: bytes of a full packet
@@ -374,7 +380,7 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.decode_floats">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">decode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.decode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.decode_floats" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">decode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytearray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.decode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.decode_floats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode a received byte list, into a float list as specified by the bpl protocol</p>
 <p>Bytes are decoded into 32 bit floats.</p>
 <dl class="field-list simple">
@@ -389,7 +395,7 @@ If unable to parse the packet, then return 0,0,b’’.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol.encode_floats">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_floats" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">encode_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bytes</span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol.encode_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol.encode_floats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encode a list of floats into bytes</p>
 <p>Floats are encoded into 32 bits (4 bytes)</p>
 <dl class="field-list simple">
@@ -411,7 +417,7 @@ If unable to parse the packet, then return 0,0,b’’.
 Helper class to read and decode incoming bytes and account for the incomplete packets.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bplprotocol.PacketReader.receive_bytes">
-<span class="sig-name descname"><span class="pre">receive_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader.receive_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader.receive_bytes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">receive_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/bplprotocol.html#PacketReader.receive_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketReader.receive_bytes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decodes packets.
 Accounts for reading incomplete bytes.</p>
 <dl class="field-list simple">
@@ -435,7 +441,7 @@ Accounts for reading incomplete bytes.</p>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="../ros1/index.html" class="btn btn-neutral float-right" title="ROS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="examples/force_torque_sensor.html" class="btn btn-neutral float-left" title="Accessing the Force Torque Sensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/voltage_threshold_parameters.html" class="btn btn-neutral float-left" title="Voltage Threshold Parameters - Auto Stow on Voltage Change" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

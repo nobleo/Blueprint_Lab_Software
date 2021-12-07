@@ -1,6 +1,4 @@
 
-# from bplprotocol import BPLProtocol, PacketID
-
 
 from bplprotocol import BPLProtocol, PacketID
 import time

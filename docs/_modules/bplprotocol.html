@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
 
   
   
@@ -35,6 +36,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/tabs.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -231,7 +233,10 @@
 
     <span class="n">ATI_FT_READING</span> <span class="o">=</span> <span class="mh">0xD8</span>
     <span class="s2">&quot;6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it&quot;</span>
-    <span class="n">BOOTLOADER</span> <span class="o">=</span> <span class="mh">0xFF</span></div>
+    <span class="n">BOOTLOADER</span> <span class="o">=</span> <span class="mh">0xFF</span>
+
+    <span class="n">VOLTAGE_THRESHOLD_PARAMETERS</span> <span class="o">=</span> <span class="mh">0x99</span>
+    <span class="s2">&quot;4 floats - Parameters to define the voltage threshold parameters. Enabled (0 or 1), V_Min (V), V_Max (V), time (seconds).&quot;</span></div>
 
 
 <div class="viewcode-block" id="BPLProtocol"><a class="viewcode-back" href="../bplprotocol/sdk.html#bplprotocol.BPLProtocol">[docs]</a><span class="k">class</span> <span class="nc">BPLProtocol</span><span class="p">:</span>
@@ -368,7 +373,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, John Sumskas.
+        &#169; Copyright 2021, Blueprintlab.
 
     </p>
   </div>

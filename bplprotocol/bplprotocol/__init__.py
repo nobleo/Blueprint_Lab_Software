@@ -75,6 +75,9 @@ class PacketID(IntEnum):
     "6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it"
     BOOTLOADER = 0xFF
 
+    VOLTAGE_THRESHOLD_PARAMETERS = 0x99
+    "4 floats - Parameters to define the voltage threshold parameters. Enabled (0 or 1), V_Min (V), V_Max (V), time (seconds)."
+
 
 class BPLProtocol:
     """Class used to encode and decode BPL packets."""
