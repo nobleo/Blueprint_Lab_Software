@@ -189,7 +189,7 @@
   </link>
   <joint name="bravo_1023_1_end_joint" type="fixed">
     <parent link="bravo_1023_1_joint_link"/>
-    <origin rpy="0 0 -1.5707" xyz="0 0 0.0056"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0056"/>
     <child link="bravo_1023_1_end_link"/>
   </joint>
   <link name="bravo_1023_1_end_link"/>
