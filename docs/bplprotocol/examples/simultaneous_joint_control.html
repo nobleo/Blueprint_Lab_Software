@@ -182,17 +182,13 @@
 <p>Joints Control packets must be send individually to the joints.
 If you would like to simultaneously control the joints send the control packets in one after another.</p>
 <p>Alternatively you can concatenate all the packets to form list of bytes then proceed to send all the packets out at once.</p>
-<p>The following is an example of doing this over an ethernet connection.</p>
+<p>The following is an example of doing this.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Serial</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">UDP</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bplprotocol</span> <span class="kn">import</span> <span class="n">BPLProtocol</span><span class="p">,</span> <span class="n">PacketID</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">serial</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-    <span class="n">MANIPULATOR_IP_ADDRESS</span> <span class="o">=</span> <span class="s1">&#39;192.168.2.4&#39;</span>
-    <span class="n">MANIPULATOR_PORT</span> <span class="o">=</span> <span class="mi">6789</span>
-    <span class="n">manipulator_address</span> <span class="o">=</span> <span class="p">(</span><span class="n">MANIPULATOR_IP_ADDRESS</span><span class="p">,</span> <span class="n">MANIPULATOR_PORT</span><span class="p">)</span>
 
     <span class="n">serial_port_name</span> <span class="o">=</span> <span class="s2">&quot;COM10&quot;</span>
 
@@ -208,7 +204,7 @@ If you would like to simultaneously control the joints send the control packets 
         <span class="n">packets</span> <span class="o">+=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="n">device_id</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">,</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_floats</span><span class="p">([</span><span class="n">position</span><span class="p">]))</span>
 
     <span class="c1"># Send joints to desired_positions</span>
-    <span class="n">serial_port</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">packets</span><span class="p">,</span> <span class="n">manipulator_address</span><span class="p">)</span>
+    <span class="n">serial_port</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">packets</span><span class="p">)</span>
 
 </pre></div>
 </div>

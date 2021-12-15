@@ -4,10 +4,6 @@ import serial
 
 if __name__ == '__main__':
 
-    MANIPULATOR_IP_ADDRESS = '192.168.2.4'
-    MANIPULATOR_PORT = 6789
-    manipulator_address = (MANIPULATOR_IP_ADDRESS, MANIPULATOR_PORT)
-
     serial_port_name = "COM10"
 
     serial_port = serial.Serial(serial_port_name, baudrate=115200, parity=serial.PARITY_NONE,
@@ -22,5 +18,5 @@ if __name__ == '__main__':
         packets += BPLProtocol.encode_packet(device_id, PacketID.POSITION, BPLProtocol.encode_floats([position]))
 
     # Send joints to desired_positions
-    serial_port.write(packets, manipulator_address)
+    serial_port.write(packets)
 

@@ -8,7 +8,7 @@ If you would like to simultaneously control the joints send the control packets 
 Alternatively you can concatenate all the packets to form list of bytes then proceed to send all the packets out at once.
 
 
-The following is an example of doing this over an ethernet connection.
+The following is an example of doing this.
 
 
 .. tabs::
