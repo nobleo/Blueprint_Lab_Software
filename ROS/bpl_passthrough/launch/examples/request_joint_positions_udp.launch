@@ -9,7 +9,7 @@
     </node>
 
     <node name="request_joints_pos" pkg="bpl_passthrough" type="request_joint_positions.py" output="screen">
-        <param name="frequency" value="$(arg port)"/>
+        <param name="frequency" value="$(arg frequency)"/>
     </node>
 
 </launch>
