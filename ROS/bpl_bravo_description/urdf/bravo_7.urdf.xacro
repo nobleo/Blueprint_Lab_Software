@@ -322,7 +322,7 @@
     
         <joint name="${name}_1023_1_end_joint" type="fixed">
             <parent link="${name}_1023_1_joint_link"/>
-            <origin xyz="0 0 0.0056" rpy="0 0 -1.5707"/>
+            <origin xyz="0 0 0.0056" rpy="0 0 0"/>
             <child link="${name}_1023_1_end_link"/>
         </joint>
     
