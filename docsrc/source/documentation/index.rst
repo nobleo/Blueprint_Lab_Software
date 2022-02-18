@@ -5,15 +5,11 @@ Documentation
 Reach Alpha
 -------------------------
 
-Reach Alpha - Kinematic and Dynamic Properties :download:`pdf </docs/Reach Alpha - Kinematic and Dynamic Properties.pdf>`
-
 Reach Alpha Integration Manual :download:`pdf </docs/Reach Alpha Integration Manual V1.16.pdf>`
 
 
 Reach Bravo
 ----------------------------
-
-Reach Bravo - Kinematic and Dynamic Properties :download:`pdf </docs/Reach Bravo - Kinematic and Dynamic Properties.pdf>`
 
 Reach Bravo Integration Manual :download:`pdf </docs/Reach Bravo Integration Manual V3.0.pdf>`
 
