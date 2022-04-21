@@ -116,3 +116,25 @@ To view an Bravo 5 URDF:
 .. code-block:: bash
 
     roslaunch bpl_bravo_description view_bravo_5.launch
+
+bpl_bravo_description_mk2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The BPL Bravo Description MK2 package contains the Universal Robot Description File (URDF) files for the bravo mk2 range of manipulators.
+
+Supported Products:
+
+- RB-7001 - Reach Bravo 7 MK2
+- RB-7201 - Reach Bravo 7 MK2 with FT sensor
+
+To view an Bravo 7 URDF:
+
+.. code-block:: bash
+
+    roslaunch bpl_bravo_description_mk2 view_bravo_7.launch
+
+To view an Bravo 7 with FT URDF:
+
+.. code-block:: bash
+
+    roslaunch bpl_bravo_description_mk2 view_bravo_7_ft.launch
