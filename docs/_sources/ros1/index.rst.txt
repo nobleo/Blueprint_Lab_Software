@@ -124,8 +124,15 @@ The BPL Bravo Description MK2 package contains the Universal Robot Description F
 
 Supported Products:
 
+- RB-5001 - Reach Bravo 5 MK2
 - RB-7001 - Reach Bravo 7 MK2
 - RB-7201 - Reach Bravo 7 MK2 with FT sensor
+
+To view an Bravo 5 URDF:
+
+.. code-block:: bash
+
+    roslaunch bpl_bravo_description_mk2 view_bravo_5.launch
 
 To view an Bravo 7 URDF:
 
