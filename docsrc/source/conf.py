@@ -19,11 +19,11 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Blueprint Lab Software'
-copyright = '2021, Blueprintlab'
+copyright = '2022, Blueprintlab'
 author = 'John Sumskas'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.0.2'
 
 
 # -- General configuration ---------------------------------------------------

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Requesting Joint Positions &mdash; Blueprint Lab Software 0.0.1 documentation</title>
+  <title>Requesting Joint Positions &mdash; Blueprint Lab Software 0.0.2 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
@@ -118,7 +118,7 @@ or by requesting information from all devices using a broadcast 0xFF.</p>
     <span class="n">pr</span> <span class="o">=</span> <span class="n">PacketReader</span><span class="p">()</span>
 
     <span class="c1"># Device_id 0XFF is broadcast that is received by all devices.</span>
-    <span class="n">request_packet</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">PacketID</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">]))</span>
+    <span class="n">request_packet</span> <span class="o">=</span> <span class="n">BPLProtocol</span><span class="o">.</span><span class="n">encode_packet</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="n">PacketID</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">PacketID</span><span class="o">.</span><span class="n">POSITION</span><span class="p">]))</span>
 
     <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">DEVICE_IDS</span><span class="p">)</span>
 
@@ -167,7 +167,7 @@ or by requesting information from all devices using a broadcast 0xFF.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Blueprintlab.</p>
+    <p>&#169; Copyright 2022, Blueprintlab.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

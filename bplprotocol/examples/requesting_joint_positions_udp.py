@@ -23,7 +23,7 @@ if __name__ == '__main__':
     pr = PacketReader()
 
     # Device_id 0XFF is broadcast that is received by all devices.
-    request_packet = BPLProtocol.encode_packet(0xFF, PacketID.REQUEST, bytes([PacketID.TEMPERATURE]))
+    request_packet = BPLProtocol.encode_packet(0xFF, PacketID.REQUEST, bytes([PacketID.POSITION]))
 
     positions = ["-"] * len(DEVICE_IDS)
 
