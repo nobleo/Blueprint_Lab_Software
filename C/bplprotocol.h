@@ -57,8 +57,8 @@ typedef enum packetID{
 struct Packet {
     uint8_t packetID;
     uint8_t deviceID;
-    uint8_t* data;
-    uint8_t data_length;
+    uint8_t data[MAX_PACKET_LENGTH];
+    uint8_t dataLength;
 };
 
 uint8_t cobs_encode( uint8_t* input, uint8_t length, uint8_t * output)
@@ -144,8 +144,6 @@ unsigned crc8(unsigned crc, unsigned char const *data, size_t len)
     return crc;
 }
 
-
-
 size_t encodePacketBare(uint8_t* packet_buffer, uint8_t deviceID, uint8_t packetID, uint8_t* data, size_t length)
 {
     uint8_t tempBuffer[MAX_PACKET_LENGTH];
@@ -167,7 +165,7 @@ size_t encodePacket(uint8_t* packet_buffer, struct Packet* packet)
 {
     uint8_t tempBuffer[MAX_PACKET_LENGTH];
     memset(tempBuffer, 0, MAX_PACKET_LENGTH);
-    size_t length = packet->data_length;
+    size_t length = packet->dataLength;
 
     size_t totalLength = length + HEADER_SIZE;
     memcpy(tempBuffer, packet->data, length);
@@ -205,13 +203,43 @@ size_t encodeFloats(uint8_t* outputBuffer, float* floatList, size_t length)
     return length*sizeof(uint8_t) * 4;
 }
 
+size_t decodeFloats(float* outputFloatBuffer, uint8_t* inputBuffer, size_t inputBufferLength)
+{
+    size_t floatLength = inputBufferLength/4;
+    uint8_t* inputBufferPointer;
+    uint32_t asInt;
+    for(int i = 0; i < floatLength; i++)
+    {   
+        asInt = 0;
+        inputBufferPointer = &inputBuffer[i*4];
 
+        for(int j = 0; j<4; j++)
+        {   
+            asInt = asInt | (inputBufferPointer[j] << 8 * j);
+        }
 
+        outputFloatBuffer[i] = *((float*)&asInt);
+    }
+
+    return floatLength;
+}
+
+float decodeFloat(uint8_t* inputBuffer)
+{
+    uint32_t asInt = 0;
+    for(int i = 0; i<4; i++)
+    {   
+        asInt = asInt | (inputBuffer[i] << 8 * i);
+    }
+    float f = *((float*)&asInt);
+    return f;
+}
 
 int decodePacket(struct Packet* packet, uint8_t* inputData, size_t inputDatalength)
 {
     if (inputDatalength > MAX_PACKET_LENGTH){
-        printf("LENGTH: %d is longer than Maximum Packet Length %d\n", inputDatalength, MAX_PACKET_LENGTH);
+        // printf("LENGTH: %d is longer than Maximum Packet Length %d\n", inputDatalength, MAX_PACKET_LENGTH);
+        return -1;
     }
     
     // uint8_t inputDataCopy[MAX_PACKET_LENGTH];    
@@ -231,14 +259,11 @@ int decodePacket(struct Packet* packet, uint8_t* inputData, size_t inputDataleng
     // Check if length is valid
 
     if(packetLength < 4 || packetLength >= inputDatalength){
+        // Length is incoreect
         packet->packetID = 0;
         packet->deviceID = 0;
-
-        printf("Data Length is invalid \n");
-        return 0;
+        return -2;
     }
-
-    printf("Packet Length is %d: \n", packetLength);
 
     uint8_t unwrapedBuffer[MAX_PACKET_LENGTH];
     memset(unwrapedBuffer, 0, MAX_PACKET_LENGTH);
@@ -246,23 +271,10 @@ int decodePacket(struct Packet* packet, uint8_t* inputData, size_t inputDataleng
 
     unwrapedBuffer[packetEndIndex] = 0xFF;
 
-    
-    for(int i = 0; i < 30; i ++){
-        printf("%d ", unwrapedBuffer[i]);
-    }
-    printf("\n");
-
     uint8_t decodedData[MAX_PACKET_LENGTH];
     memset(decodedData, 0, MAX_PACKET_LENGTH);
 
-    cobs_decode(unwrapedBuffer, packetLength+1, decodedData);
-
-    
-    for(int i = 0; i < 30; i ++){
-        printf("%d ", unwrapedBuffer[i]);
-    }
-    printf("\n");
-    
+    cobs_decode(unwrapedBuffer, packetLength+1, decodedData);    
 
     uint8_t crc = decodedData[packetLength-1];
     uint8_t deviceID = decodedData[packetLength-3];
@@ -270,16 +282,15 @@ int decodePacket(struct Packet* packet, uint8_t* inputData, size_t inputDataleng
 
     uint8_t crcCheck=crc8(0xff, decodedData, packetLength-1);
 
-    printf("RECEIVED: %d,  Calculate CRC: %d \n", crc, crcCheck);
-
     if (crc != crcCheck){
-        printf("Crc is not correct\n");
-        return -1;
+        // CRC is not correct
+        return -3;
     }
 
-    packet->data_length = packetLength-4;
+    packet->dataLength = packetLength-4;
     packet->deviceID = deviceID;
     packet->packetID = packetID;
+    memset(packet->data, 0 ,MAX_PACKET_LENGTH);
     memcpy(packet->data, decodedData, packetLength-4);
 
     return 1; 

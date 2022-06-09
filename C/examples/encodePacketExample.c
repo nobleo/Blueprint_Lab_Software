@@ -13,14 +13,15 @@ void main(void){
     // Encoding data with the following information
     uint8_t deviceID = 0x01;
     uint8_t packetID = MODE;
-    uint8_t data[1] = {5};   // Int packet
+
+    uint8_t data[5] = {1, 2, 3, 4, 5};   // Int packet
 
     struct Packet packet;
 
     packet.deviceID = deviceID;
     packet.packetID = packetID;
-    packet.data = data;
-    packet.data_length = 1;
+    memcpy(packet.data, data, 5);
+    packet.dataLength = 5;
 
     // encode the packet. 
     size_t packetLength = encodePacket(encodedPacket, &packet);

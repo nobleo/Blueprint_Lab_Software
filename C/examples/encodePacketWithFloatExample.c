@@ -22,8 +22,8 @@ void main(void){
 
     packet.deviceID = deviceID;
     packet.packetID = packetID;
-    packet.data = encodedFloatData;
-    packet.data_length = dataLength;
+    memcpy(packet.data, encodedFloatData, dataLength);
+    packet.dataLength = dataLength;
 
     // encode the packet. 
     size_t packetLength = encodePacket(encodedPacket, &packet);
