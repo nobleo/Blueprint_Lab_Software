@@ -9,29 +9,42 @@ from launch.conditions import IfCondition, UnlessCondition
 def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-
+    pkg_share = get_package_share_directory('bpl_bravo_description')
     urdf_file_name = 'urdf/bravo_7_example.urdf'
-    urdf = os.path.join(
-        get_package_share_directory('bpl_bravo_description'),
+    urdf = os.path.join(pkg_share,
         urdf_file_name)
     with open(urdf, 'r') as infp:
         robot_desc = infp.read()
+
+    rviz_config_file = os.path.join(pkg_share, 'rviz/rviz.rviz')
+    zeros_file = os.path.join(pkg_share, 'config/zeros.yaml')
 
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
             default_value='false',
             description='Use simulation (Gazebo) clock if true'),
+
+        # Robot state publisher.
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            parameters=[{'use_sim_time': use_sim_time, 'robot_description': robot_desc}],
+            parameters=[{'use_sim_time': 
+            use_sim_time, 'robot_description': robot_desc}],
             arguments=[urdf]),
 
         
         Node(
             package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui'    )
+            executable='joint_state_publisher_gui',
+            parameters=[]),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='RVIZ',
+            arguments=['-d', rviz_config_file]
+        )
     ])
