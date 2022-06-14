@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'bpl_control_node = bpl_control.bpl_control_node:main',
+            'joint_state_publisher = bpl_control.joint_state_publisher:main',
         ],
     },
 )

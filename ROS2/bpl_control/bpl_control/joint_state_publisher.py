@@ -46,15 +46,14 @@ effort: []
 ---
 
 """
-# http://docs.ros.org/en/melodic/api/control_msgs/html/index-msg.html
 
 
 
 
-class BPLControlNode(Node):
+class BPLJointStatesPublisher(Node):
 
     def __init__(self):
-        super().__init__("bpl_control_node")
+        super().__init__("bpl_joint_state_publisher_node")
 
         self.joints = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07]
         self.frequency = 5
@@ -108,8 +107,8 @@ class BPLControlNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    jre = BPLControlNode()
-    rclpy.spin(jre)
+    jsp = BPLJointStatesPublisher()
+    rclpy.spin(jsp)
 
 
 if __name__ == "__main__":
