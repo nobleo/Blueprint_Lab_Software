@@ -20,15 +20,15 @@ class BPLPassthroughNode(Node):
         super().__init__('serial_passthrough')
         self.rx_publisher = self.create_publisher(Packet,'rx', 5)
 
-        self.declare_parameter('~serial_port', '/dev/ttyUSB0')
-        self.declare_parameter('~baudrate', 115200)
-        self.declare_parameter('~parity', serial.PARITY_NONE)
-        self.declare_parameter('~stop_bits', serial.STOPBITS_ONE)
+        self.declare_parameter('serial_port', '/dev/ttyUSB0')
+        self.declare_parameter('baudrate', 115200)
+        self.declare_parameter('parity', serial.PARITY_NONE)
+        self.declare_parameter('stop_bits', serial.STOPBITS_ONE)
 
-        serial_port = self.get_parameter('~serial_port').value
-        baudrate = self.get_parameter('~baudrate').value
-        parity = self.get_parameter('~parity').value
-        stop_bits = self.get_parameter('~stop_bits').value
+        serial_port = self.get_parameter('serial_port').value
+        baudrate = self.get_parameter('baudrate').value
+        parity = self.get_parameter('parity').value
+        stop_bits = self.get_parameter('stop_bits').value
         
         self.tx_subscriber = self.create_subscription(Packet, "tx", self.tx_transmit, 5)
 

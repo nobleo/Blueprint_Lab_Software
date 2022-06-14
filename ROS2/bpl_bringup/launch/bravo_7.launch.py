@@ -7,6 +7,10 @@ from launch_ros.actions import Node
 from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.descriptions import ParameterValue
 
+from bplprotocol import PacketReader, BPLProtocol, PacketID
+
+
+
 def generate_launch_description():
 
     desc_pkg_share = get_package_share_directory('bpl_bravo_description')
@@ -30,11 +34,18 @@ def generate_launch_description():
 
         Node(
             package='bpl_control',
-            executable='joint_state_publisher'
+            executable='joint_state_publisher',
+            parameters=[{
+                "joints":[1, 2, 3, 4, 5, 6, 7],
+                "joint_names":['bravo_axis_a', 'bravo_axis_b', 'bravo_axis_c', 'bravo_axis_d', 'bravo_axis_e', 'bravo_axis_f', 'bravo_axis_g'],
+                'request_frequency':10,
+                'publish_frequency': 20,
+            }]
         ),
 
         Node(package='bpl_passthrough',
-        executable='serial_passthrough'),
+        executable='serial_passthrough',
+        parameters=[{"serial_port":"/dev/ttyUSB0"}]),
 
         Node(
             package='rviz2',
@@ -42,9 +53,4 @@ def generate_launch_description():
             name='RVIZ',
             arguments=['-d', rviz_config_file]
         )
-        # Node(
-        #     package='joint_state_publisher',
-        #     executable='joint_state_publisher',
-        #     name='joint_state_publisher',
-        #     parameters=[{'robot_description': ['/joint_state']    }])
     ])
