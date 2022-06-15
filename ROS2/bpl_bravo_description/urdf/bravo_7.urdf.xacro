@@ -9,7 +9,7 @@
             <child link="${name}_base_link" />
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </joint>
-        <material name="bravo_black">
+        <material name="${name}_black">
             <color rgba="0.3 0.3 0.3 1"/>
         </material>
         <link name="${name}_base_link">
@@ -17,7 +17,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1019_base.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
            <collision>
             <geometry>
@@ -55,7 +55,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1019_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
         </link>
         
@@ -71,7 +71,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1013_base.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -102,7 +102,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1013_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
     
             <collision>
@@ -134,7 +134,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1026_0_base.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -165,7 +165,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1026_0_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -206,7 +206,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1026_1_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
                 <origin xyz="0 0 0 " rpy="0 0 3.14159"/>
             </visual>
             <collision>
@@ -238,7 +238,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1023_0_base.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -269,7 +269,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1023_0_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -310,7 +310,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1023_1_end.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -345,7 +345,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1028.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
@@ -397,7 +397,7 @@
                 <geometry>
                     <mesh filename="package://bpl_bravo_description/meshes/RS2-1030.stl"/>
                 </geometry>
-                <material name="bravo_black"/>
+                <material name="${name}_black"/>
             </visual>
             <collision>
                 <geometry>
