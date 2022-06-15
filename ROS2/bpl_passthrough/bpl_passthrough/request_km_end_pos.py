@@ -20,7 +20,7 @@ class KM_END_POSRequest(Node):
 
         self.tx_publisher = self.create_publisher(Packet, "tx", 100)
         self.rx_subscriber = self.create_subscription(Packet, "rx", self.receive_packet, 100)
-        self.pose_publisher = self.create_publisher(PoseStamped, "pose_control", 10)
+        self.pose_publisher = self.create_publisher(PoseStamped, "current_pose", 10)
 
         self.request_packet = Packet()
         self.request_packet.device_id = 0xFF
