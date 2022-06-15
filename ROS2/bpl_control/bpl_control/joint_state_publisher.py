@@ -1,6 +1,3 @@
-# Makind this for the bravo 7 for now.
-
-
 import rclpy
 from rclpy.node import Node
 
@@ -26,8 +23,8 @@ class BPLJointStatesPublisher(Node):
         self.publish_frequency = self.get_parameter('publish_frequency').value
         self.packet_ids = [PacketID.POSITION, PacketID.VELOCITY]
         
-        self.joint_positions = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        self.joint_velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.joint_positions = [0.0] * len(self.joints)
+        self.joint_velocities = [0.0] * len(self.joints)
 
         self.tx_publisher = self.create_publisher(Packet, "tx", 10)
         self.joint_state_publisher = self.create_publisher(JointState, "joint_states", 10)
