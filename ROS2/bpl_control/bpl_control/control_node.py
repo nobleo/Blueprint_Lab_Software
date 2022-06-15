@@ -70,12 +70,10 @@ class BPLControlNode(Node):
 
         quat = km_pos.pose.orientation.x, km_pos.pose.orientation.y, km_pos.pose.orientation.z, km_pos.pose.orientation.w
         rot = R.from_quat(quat).as_euler('xyz')
+        self.km_command = [x, y, z, rot[2], rot[1], rot[0]]
+        self.mode = Mode.KM_POS
 
-        p = Packet()
-        p.packet_id = PacketID.KM_END_POS
-        p.device_id = 0x0E
-        p.data = list(BPLProtocol.encode_floats([x, y, z, rot[2], rot[1], rot[0]]))
-        print(f"Publishing {p.data }")
+        
 
     def publish_command(self):
         if self.mode == Mode.POSITION:
@@ -89,6 +87,13 @@ class BPLControlNode(Node):
                     p.data = list(BPLProtocol.encode_floats([position]))
                     print(f"Pusblishing {device_id}, {position}")
                     # self.tx_publisher.publish(p)
+        elif self.mode == Mode.KM_POS and self.km_command is not None:
+            p = Packet()
+            p.packet_id = PacketID.KM_END_POS
+            p.device_id = 0x0E
+            p.data = list(BPLProtocol.encode_floats(self.km_command))
+            # print(f"Publishing {p.data }")
+            self.tx_publisher.publish(p)
         else:
             for device_id in self.joints:
                 p = Packet()
@@ -97,6 +102,7 @@ class BPLControlNode(Node):
                 p.data = list(BPLProtocol.encode_floats([0.0]))
                 self.tx_publisher.publish(p)
             self.position_command = [float("NAN")] * len(self.joints)
+            self.km_command = None
 
             
 
