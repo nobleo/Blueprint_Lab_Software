@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'serial_passthrough = bpl_passthrough.serial_passthrough:main',
+            'udp_passthrough = bpl_passthrough.udp_passthrough:main',
             'request_joint_positions = bpl_passthrough.request_joint_positions:main',
         ],
     },

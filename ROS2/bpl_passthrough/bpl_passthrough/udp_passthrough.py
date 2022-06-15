@@ -44,7 +44,7 @@ class BPLPassthroughNode(Node):
         device_id = packet.device_id
         packet_id = packet.packet_id
         data = bytearray(packet.data)
-        self.get_logger().debug("Transmitting {}, {}, {}".format(device_id, packet_id, data))
+        # self.get_logger().debug("Transmitting {}, {}, {}".format(device_id, packet_id, data))
 
         encoded_packet = BPLProtocol.encode_packet(device_id, packet_id, data)
         self.sock.sendto(encoded_packet, (self.ip_address, self.port))
@@ -73,7 +73,7 @@ class BPLPassthroughNode(Node):
                 ros_packet.packet_id = packet_id
                 ros_packet.data = list(data)
                 # print(data)
-                self.get_logger().info("Publishing {}".format(ros_packet))
+                # self.get_logger().info("Publishing {}".format(ros_packet))
                 self.rx_publisher.publish(ros_packet)
 
         # rate.sleep()
