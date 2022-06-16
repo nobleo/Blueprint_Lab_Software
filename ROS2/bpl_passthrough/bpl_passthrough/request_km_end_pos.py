@@ -15,13 +15,14 @@ class KM_END_POSRequest(Node):
     def __init__(self):
         super().__init__("request_km_end_pos_script")
 
-        self.declare_parameter("~frequency", 20)
+        self.declare_parameter("frequency", 20)
+        self.declare_parameter("frame_id", "base_link")
+        self.frame_id = self.get_parameter("frame_id").value
         self.frequency = 20
 
         self.tx_publisher = self.create_publisher(Packet, "tx", 100)
         self.rx_subscriber = self.create_subscription(Packet, "rx", self.receive_packet, 100)
-        self.pose_publisher = self.create_publisher(PoseStamped, "current_pose", 10)
-
+        self.pose_publisher = self.create_publisher(PoseStamped, "current_ee_pose", 10)
         self.request_packet = Packet()
         self.request_packet.device_id = 0xFF
         self.request_packet.packet_id = int(PacketID.REQUEST)
@@ -68,7 +69,7 @@ class KM_END_POSRequest(Node):
 
     def make_header(self):
         hdr = Header()
-        hdr.frame_id = "base_link"
+        hdr.frame_id = self.frame_id
         hdr.stamp = self.get_clock().now().to_msg()
         return hdr
     
