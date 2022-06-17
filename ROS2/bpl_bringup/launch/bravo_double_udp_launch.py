@@ -43,6 +43,19 @@ def generate_launch_description():
             }],
             namespace="bravo_b"
         ),
+
+        Node(
+            package='bpl_control',
+            executable='control_node',
+            namespace="bravo_b"
+        ),
+
+        Node(
+            package='bpl_control',
+            executable='b5_gui',
+            namespace="bravo_b"
+        ),
+
      
         
         Node(package='bpl_passthrough',
@@ -66,6 +79,20 @@ def generate_launch_description():
                 'request_frequency':10,
                 'publish_frequency': 20,
             }],
+            namespace="bravo_a"
+        ),
+
+        Node(
+            package='bpl_control',
+            executable='control_node',
+            parameters=[{
+                "joints":[1, 2, 3, 4, 5, 6, 7]}],
+            namespace="bravo_a"
+        ),
+
+        Node(
+            package='bpl_control',
+            executable='b7_gui',
             namespace="bravo_a"
         ),
 

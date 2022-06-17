@@ -27,7 +27,7 @@ class BPLControlNode(Node):
     mode = Mode.STANDBY
 
     def __init__(self):
-        super().__init__("bpl_joint_state_publisher_node")
+        super().__init__("bpl_control_node")
 
         self.declare_parameter('joints', [0x01, 0x02, 0x03, 0x04, 0x05])
         # self.declare_parameter('joint_names', ['bravo_axis_a', 'bravo_axis_b', 'bravo_axis_c', 'bravo_axis_d', 'bravo_axis_e', 'bravo_axis_f', 'bravo_axis_g'])
@@ -46,8 +46,6 @@ class BPLControlNode(Node):
         self.km_command_subscriber          = self.create_subscription(PoseStamped, "command/km_command", self.km_command_handler, 10)
 
 
-
-
         self.position_command = [float("NAN")] * len(self.joints)
         self.velocity_command = [float(0.0) * len(self.joints)] # Can't seen NAN with Float32MultiArray
         # self.position_command = [0.001, 3.2, 0.9, 3.0, 3.02]
@@ -61,7 +59,9 @@ class BPLControlNode(Node):
         self.timer2 = self.create_timer(1/self.publish_frequency, self.publish_command)
 
     def position_command_handler(self, positions):
-        #positions = positions.data
+        self.position_command = positions.data
+
+        self.position_command[0] = self.position_command[0] * 1000
         self.mode = Mode.POSITION
         pass
     def velocity_command_handler(self, velocities):
@@ -77,7 +77,7 @@ class BPLControlNode(Node):
         # Let's do some basic format checks and safety stuff
         if len(velocities) != len(self.joints):
             # Bad size, probably trying to use the 7F instead
-            print(f"Size wrong! Expected: {len(joints)}, Got: {len(velocities)}. Dropping")
+            print(f"Size wrong! Expected: {len(self.joints)}, Got: {len(velocities)}. Dropping")
             return
 
 
@@ -124,8 +124,8 @@ class BPLControlNode(Node):
                     p.device_id = device_id
                     p.packet_id = PacketID.POSITION
                     p.data = list(BPLProtocol.encode_floats([position]))
-                    print(f"Pusblishing {device_id}, {position}")
-                    # self.tx_publisher.publish(p)
+                    # print(f"Pusblishing {device_id}, {position}")
+                    self.tx_publisher.publish(p)
 
         elif self.mode == Mode.VELOCITY:
             for device_id, velocity in zip(self.joints, self.velocity_command):
@@ -145,7 +145,7 @@ class BPLControlNode(Node):
             p.device_id = 0x0E
             p.data = list(BPLProtocol.encode_floats(self.km_command))
             # print(f"Publishing {p.data }")
-            #self.tx_publisher.publish(p)
+            self.tx_publisher.publish(p)
         else:
             for device_id in self.joints:
                 p = Packet()

@@ -14,25 +14,25 @@ from rclpy.node import Node
 
 
 
-bravo_7_arm_name		= "Bravo_A"
+bravo_7_arm_name		= "Bravo_7FN"
 bravo_7_joint_names 	= ['bravo_axis_a', 'bravo_axis_b', 'bravo_axis_c', 'bravo_axis_d', 'bravo_axis_e', 'bravo_axis_f', 'bravo_axis_g']
 bravo_7_joint_ids 		= [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07]
 
-bravo_5_arm_name		= "Bravo_B"
+bravo_5_arm_name		= "Bravo_5FN"
 bravo_5_joint_names 	= ['bravo_axis_a', 'bravo_axis_b', 'bravo_axis_c', 'bravo_axis_d', 'bravo_axis_e']
 bravo_5_joint_ids 		= [0x01, 0x02, 0x03, 0x04, 0x05]
 
 #Running the 'a' py file
-#arm_name 		= bravo_7_arm_name
-#joint_names 	= bravo_7_joint_names
-#joint_ids 		= bravo_7_joint_ids
-#topic_name 		= '/handoff_gui/a_button_presses'
+arm_name 		= bravo_7_arm_name
+joint_names 	= bravo_7_joint_names
+joint_ids 		= bravo_7_joint_ids
+topic_name 		= 'command/velocities'
 
 # Running the 'b' py file
-arm_name 		= bravo_5_arm_name
-joint_names 	= bravo_5_joint_names
-joint_ids 		= bravo_5_joint_ids
-topic_name 		= 'command/velocities'
+#arm_name 		= bravo_5_arm_name
+#joint_names 	= bravo_5_joint_names
+#joint_ids 		= bravo_5_joint_ids
+#topic_name 	= '/handoff_gui/b_button_presses'
 
 
 class GuiNode(Node):
@@ -86,7 +86,7 @@ class gui_handler():
 
 		gui = QWidget()
 		gui.setWindowTitle("{} - Test Handoff GUI".format(arm_name))
-		gui.setGeometry(400, 100, 200, 300)
+		gui.setGeometry(100, 100, 200, 300)
 
 		ui_frame = QVBoxLayout()
 		lbl_arm_name = QLabel("<h1>{}</h1>".format(arm_name))
@@ -158,5 +158,4 @@ def main(args=None):
 
 if __name__ == '__main__':
 	main()     
-
 

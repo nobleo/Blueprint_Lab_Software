@@ -4,7 +4,7 @@
     <link name="base_link"/>
 
     <xacro:bravo_7 parent="base_link" name="bravo_a">
-      <origin xyz="0.635 0 0" rpy="0 0 0"/>
+      <origin xyz="0.430 0 0" rpy="0 0 0"/>
     </xacro:bravo_7>
 
   <xacro:include filename="$(find bpl_bravo_description)/urdf/bravo_5.urdf.xacro"/>

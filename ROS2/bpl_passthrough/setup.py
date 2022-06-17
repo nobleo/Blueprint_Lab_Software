@@ -23,7 +23,7 @@ setup(
             'serial_passthrough = bpl_passthrough.serial_passthrough:main',
             'udp_passthrough = bpl_passthrough.udp_passthrough:main',
             'request_joint_positions = bpl_passthrough.request_joint_positions:main',
-            'request_km_end_pos = bpl_passthrough.request_km_end_pos:main'
+            'request_km_end_pos = bpl_passthrough.request_km_end_pos:main',
         ],
     },
 )
