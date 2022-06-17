@@ -32,7 +32,7 @@ bravo_5_joint_ids 		= [0x01, 0x02, 0x03, 0x04, 0x05]
 arm_name 		= bravo_5_arm_name
 joint_names 	= bravo_5_joint_names
 joint_ids 		= bravo_5_joint_ids
-topic_name 		= '/handoff_gui/b_button_presses'
+topic_name 		= 'command/velocities'
 
 
 class GuiNode(Node):
@@ -54,7 +54,7 @@ class GuiNode(Node):
 		self.counter_ = self.counter_ + 1
 		msg = Float32MultiArray()
 		
-		base_vel = 0.01
+		base_vel = 0.2
 		val = float("NAN")
 		if 	buttonPress		== "+":
 			val = base_vel

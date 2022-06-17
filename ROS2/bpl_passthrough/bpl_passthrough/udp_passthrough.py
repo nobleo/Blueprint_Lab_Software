@@ -23,8 +23,8 @@ class BPLPassthroughNode(Node):
 
         self.tx_subscriber = self.create_subscription(Packet, 'tx', self.tx_transmit, 5)
 
-        self.declare_parameter('ip_address', '192.168.2.3')
-        self.declare_parameter('port', 6789)
+        self.declare_parameter('ip_address', '192.168.2.156')
+        self.declare_parameter('port', 7789)
 
         self.ip_address = self.get_parameter('ip_address').value
         self.port = self.get_parameter('port').value

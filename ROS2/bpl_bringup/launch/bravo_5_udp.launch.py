@@ -45,7 +45,7 @@ def generate_launch_description():
         
         Node(package='bpl_passthrough',
             executable='udp_passthrough',
-            parameters=[{"ip_address":"192.168.2.3"}]),
+            parameters=[{"ip_address":"192.168.2.156"}]),
 
         Node(
             package='rviz2',
