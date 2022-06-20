@@ -144,6 +144,17 @@ unsigned crc8(unsigned crc, unsigned char const *data, size_t len)
     return crc;
 }
 
+/**
+ * @brief Encode a packet
+ * 
+ * @param packet_buffer Buffer for packet to be filled into.
+ * @param deviceID Device ID to Encode
+ * @param packetID Packet ID to Encode
+ * @param data data buffer to Encode
+ * @param length length of data buffer
+ * @return * size_t The size of the packet
+ */
+**/
 size_t encodePacketBare(uint8_t* packet_buffer, uint8_t deviceID, uint8_t packetID, uint8_t* data, size_t length)
 {
     uint8_t tempBuffer[MAX_PACKET_LENGTH];
@@ -160,7 +171,13 @@ size_t encodePacketBare(uint8_t* packet_buffer, uint8_t deviceID, uint8_t packet
 
 }
 
-
+/**
+ * @brief 
+ * 
+ * @param packet_buffer 
+ * @param packet 
+ * @return size_t 
+ */
 size_t encodePacket(uint8_t* packet_buffer, struct Packet* packet)
 {
     uint8_t tempBuffer[MAX_PACKET_LENGTH];
