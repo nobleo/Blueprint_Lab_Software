@@ -79,6 +79,7 @@ Some code examples using the bplprotocol can be found under bplprotocol/examples
 
     examples/requesting_joint_positions
     examples/setting_heartbeats
+    examples/master_arm_passthrough
     examples/force_torque_sensor
     examples/joint_control
     examples/simultaneous_joint_control
