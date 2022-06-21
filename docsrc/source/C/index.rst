@@ -1,9 +1,9 @@
-BPL Protocol - C SDK
+BPL Protocol - C/C++ SDK
 ========================
 
-Welcome to the BPL Protocol Documentation C SDK
+Welcome to the BPL Protocol Documentation C/C++ SDK
 
-Here you can find instructions on how to use the C SDK
+Here you can find instructions on how to use the C/C++ SDK
 
 The entire BPL Protocol SDK is contained one file header file.
 
