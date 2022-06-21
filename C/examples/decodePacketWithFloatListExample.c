@@ -1,4 +1,11 @@
+/* 
+C/examples/decodePacketWithFloatListExample.c
 
+Author: John Sumskas
+Email: j.sumskas@blueprintlab.com
+Date: 21/06/2022
+
+*/
 #include <stdio.h>
 #include "../bplprotocol.h"
 
