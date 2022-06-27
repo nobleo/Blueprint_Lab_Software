@@ -41,10 +41,12 @@
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">BPL Protocol</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#enable-use-of-the-sdk">Enable use of the SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sdk">SDK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#python-installation">Python Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#examples">Examples</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#sdk">SDK</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">SDK</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">BPL Protocol SDK</a></li>
 </ul>
 </li>
@@ -52,6 +54,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../C/index.html">BPL Protocol - C/C++ SDK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
 </ul>
 
@@ -82,164 +85,6 @@
              
   <section id="module-bplprotocol">
 <span id="bpl-protocol-sdk"></span><h1>BPL Protocol SDK<a class="headerlink" href="#module-bplprotocol" title="Permalink to this headline"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="bplprotocol.PacketID">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">PacketID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bplprotocol.html#PacketID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.PacketID" title="Permalink to this definition"></a></dt>
-<dd><p>Class containing BPL packet IDs.
-Look in The Serial Protocol Document for comprehensive details on packet ids.</p>
-<p>Packet IDs:</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.MODE">
-<span class="sig-name descname"><span class="pre">MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODE" title="Permalink to this definition"></a></dt>
-<dd><p>1 byte - Describes the Mode of a device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.VELOCITY">
-<span class="sig-name descname"><span class="pre">VELOCITY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - Describes the velocity of a device. Radians/s for angular joints. mm/s for linear joints.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.POSITION">
-<span class="sig-name descname"><span class="pre">POSITION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - Describes the position of a device. In radians or mm</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.CURRENT">
-<span class="sig-name descname"><span class="pre">CURRENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - Describes the current drawn by a device in mA</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.RELATIVE_POSITION">
-<span class="sig-name descname"><span class="pre">RELATIVE_POSITION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#bplprotocol.PacketID.RELATIVE_POSITION" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - When sent sets the relative position of actuator. The actuator will move from its current position the amount specified in the data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.INDEXED_POSITION">
-<span class="sig-name descname"><span class="pre">INDEXED_POSITION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#bplprotocol.PacketID.INDEXED_POSITION" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - On first receiving indexed position an offset is created between the indexed position demand received and the current position. New indexed positions packets then move the actuators relative to the initial indexed position.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.REQUEST">
-<span class="sig-name descname"><span class="pre">REQUEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">96</span></em><a class="headerlink" href="#bplprotocol.PacketID.REQUEST" title="Permalink to this definition"></a></dt>
-<dd><p>bytes - Request a packet ID. On receiving the command, the device will send the packet corresponding to the packet IDs in the data field.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.SERIAL_NUMBER">
-<span class="sig-name descname"><span class="pre">SERIAL_NUMBER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">97</span></em><a class="headerlink" href="#bplprotocol.PacketID.SERIAL_NUMBER" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - The unique serial number of the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.MODEL_NUMBER">
-<span class="sig-name descname"><span class="pre">MODEL_NUMBER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">98</span></em><a class="headerlink" href="#bplprotocol.PacketID.MODEL_NUMBER" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - The model number of the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.TEMPERATURE">
-<span class="sig-name descname"><span class="pre">TEMPERATURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">102</span></em><a class="headerlink" href="#bplprotocol.PacketID.TEMPERATURE" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - The internal temperature in Celsius</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.SOFTWARE_VERSION">
-<span class="sig-name descname"><span class="pre">SOFTWARE_VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">108</span></em><a class="headerlink" href="#bplprotocol.PacketID.SOFTWARE_VERSION" title="Permalink to this definition"></a></dt>
-<dd><p>3 bytes - The software version on the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_POS">
-<span class="sig-name descname"><span class="pre">KM_END_POS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">161</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_POS" title="Permalink to this definition"></a></dt>
-<dd><p>6 floats - Request the current end effector position. (X, Y, Z, Y, P, R) in mm and radians. Only for kinematic enabled arms.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_VEL">
-<span class="sig-name descname"><span class="pre">KM_END_VEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">162</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL" title="Permalink to this definition"></a></dt>
-<dd><p>6 floats - Demand the end effector velocity (XYZ, RZ, RY, RX) in mm/s and rads/s. Only for kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.KM_END_VEL_LOCAL">
-<span class="sig-name descname"><span class="pre">KM_END_VEL_LOCAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">203</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_END_VEL_LOCAL" title="Permalink to this definition"></a></dt>
-<dd><p>6 floats - Demand the end effector velocity relative to the end effector. (XYZ, RZ, RY, RX) in mm/s and rads/s. Only fora kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.KM_BOX_OBSTACLE_02">
-<span class="sig-name descname"><span class="pre">KM_BOX_OBSTACLE_02</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">165</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_BOX_OBSTACLE_02" title="Permalink to this definition"></a></dt>
-<dd><p>6 floats - (X1, Y1, Z1, X2, Y2, Z2) mm. Box obstacle defined by 2 opposite corners of a rectangular prism.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.KM_CYLINDER_OBSTACLE_02">
-<span class="sig-name descname"><span class="pre">KM_CYLINDER_OBSTACLE_02</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">171</span></em><a class="headerlink" href="#bplprotocol.PacketID.KM_CYLINDER_OBSTACLE_02" title="Permalink to this definition"></a></dt>
-<dd><p>7 floats - (X1, Y1, Z1, X2, Y2, Z2, R) mm. Cylinder obstacle defined by 2 opposite centers of a cylinder. R defining the radius of the cylinder</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.VOLTAGE">
-<span class="sig-name descname"><span class="pre">VOLTAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">144</span></em><a class="headerlink" href="#bplprotocol.PacketID.VOLTAGE" title="Permalink to this definition"></a></dt>
-<dd><p>1 float - The supply voltage in Volts</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.SAVE">
-<span class="sig-name descname"><span class="pre">SAVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">80</span></em><a class="headerlink" href="#bplprotocol.PacketID.SAVE" title="Permalink to this definition"></a></dt>
-<dd><p>1 byte - Send this to save user configurable settings on a device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.HEARTBEAT_FREQUENCY">
-<span class="sig-name descname"><span class="pre">HEARTBEAT_FREQUENCY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">146</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_FREQUENCY" title="Permalink to this definition"></a></dt>
-<dd><p>1 byte - set the frequency of a packet to be sent from a device.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.HEARTBEAT_SET">
-<span class="sig-name descname"><span class="pre">HEARTBEAT_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">145</span></em><a class="headerlink" href="#bplprotocol.PacketID.HEARTBEAT_SET" title="Permalink to this definition"></a></dt>
-<dd><p>10 bytes - Specify the Packet IDs to be sent via heartbeat.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.POSITION_LIMITS">
-<span class="sig-name descname"><span class="pre">POSITION_LIMITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#bplprotocol.PacketID.POSITION_LIMITS" title="Permalink to this definition"></a></dt>
-<dd><p>2 floats - Maximum and Minimum positions of the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.VELOCITY_LIMITS">
-<span class="sig-name descname"><span class="pre">VELOCITY_LIMITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></em><a class="headerlink" href="#bplprotocol.PacketID.VELOCITY_LIMITS" title="Permalink to this definition"></a></dt>
-<dd><p>2 floats - Maximum and Minimum velocities of the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.CURRENT_LIMITS">
-<span class="sig-name descname"><span class="pre">CURRENT_LIMITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#bplprotocol.PacketID.CURRENT_LIMITS" title="Permalink to this definition"></a></dt>
-<dd><p>2 floats - Maximum and Minimum currents of the device</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.ATI_FT_READING">
-<span class="sig-name descname"><span class="pre">ATI_FT_READING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">216</span></em><a class="headerlink" href="#bplprotocol.PacketID.ATI_FT_READING" title="Permalink to this definition"></a></dt>
-<dd><p>6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bplprotocol.PacketID.VOLTAGE_THRESHOLD_PARAMETERS">
-<span class="sig-name descname"><span class="pre">VOLTAGE_THRESHOLD_PARAMETERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">153</span></em><a class="headerlink" href="#bplprotocol.PacketID.VOLTAGE_THRESHOLD_PARAMETERS" title="Permalink to this definition"></a></dt>
-<dd><p>4 floats - Parameters to define the voltage threshold parameters. Enabled (0 or 1), V_Min (V), V_Max (V), time (seconds).</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="bplprotocol.BPLProtocol">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bplprotocol.</span></span><span class="sig-name descname"><span class="pre">BPLProtocol</span></span><a class="reference internal" href="../_modules/bplprotocol.html#BPLProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bplprotocol.BPLProtocol" title="Permalink to this definition"></a></dt>

@@ -5,11 +5,19 @@ Welcome to the BPL Protocol Documentation C/C++ SDK
 
 Here you can find instructions on how to use the C/C++ SDK
 
-The entire BPL Protocol SDK is contained one file header file.
-
 You can find the SDK here: :download:`bplprotocol.h <../../../C/bplprotocol.h>`
-Or in the SDK here `C/bplprotocol.h`
+Or in the SDK at `C/bplprotocol.h`
 
+Enable use of the SDK
+------------------------------
+For enable full access to the SDK follow the following instructions.
+
+SDK
+--------------------------
+.. toctree::
+    :maxdepth: 1
+
+    ../bplprotocol/sdk_install
 
 Examples
 ----------------------

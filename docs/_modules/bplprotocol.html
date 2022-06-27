@@ -41,6 +41,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../bplprotocol/index.html">BPL Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../C/index.html">BPL Protocol - C/C++ SDK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
 </ul>
 
@@ -71,83 +72,17 @@
   <h1>Source code for bplprotocol</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">struct</span>
-<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">cobs</span> <span class="kn">import</span> <span class="n">cobs</span>
 <span class="kn">from</span> <span class="nn">crcmod</span> <span class="kn">import</span> <span class="n">crcmod</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.packetID</span> <span class="kn">import</span> <span class="n">PacketID</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please install access to the SDK.&quot;</span><span class="p">)</span>
+
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="PacketID"><a class="viewcode-back" href="../bplprotocol/sdk.html#bplprotocol.PacketID">[docs]</a><span class="k">class</span> <span class="nc">PacketID</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class containing BPL packet IDs.</span>
-<span class="sd">    Look in The Serial Protocol Document for comprehensive details on packet ids.</span>
-
-<span class="sd">    Packet IDs:</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">MODE</span> <span class="o">=</span> <span class="mh">0x01</span>
-    <span class="s2">&quot;1 byte - Describes the Mode of a device&quot;</span>
-    <span class="n">VELOCITY</span> <span class="o">=</span> <span class="mh">0x02</span>
-    <span class="s2">&quot;1 float - Describes the velocity of a device. Radians/s for angular joints. mm/s for linear joints.&quot;</span>
-    <span class="n">POSITION</span> <span class="o">=</span> <span class="mh">0x03</span>
-    <span class="s2">&quot;1 float - Describes the position of a device. In radians or mm&quot;</span>
-    <span class="n">CURRENT</span> <span class="o">=</span> <span class="mh">0x05</span>
-    <span class="s2">&quot;1 float - Describes the current drawn by a device in mA&quot;</span>
-    <span class="n">RELATIVE_POSITION</span> <span class="o">=</span> <span class="mh">0x0E</span>
-    <span class="s2">&quot;1 float - When sent sets the relative position of actuator. The actuator will move from its current position the amount specified in the data.&quot;</span>
-    <span class="n">INDEXED_POSITION</span> <span class="o">=</span> <span class="mh">0x0D</span>
-    <span class="s2">&quot;1 float - On first receiving indexed position an offset is created between the indexed position demand received and the current position. New indexed positions packets then move the actuators relative to the initial indexed position. &quot;</span>
-    <span class="n">REQUEST</span> <span class="o">=</span> <span class="mh">0x60</span>
-    <span class="s2">&quot;bytes - Request a packet ID. On receiving the command, the device will send the packet corresponding to the packet IDs in the data field.&quot;</span>
-    <span class="n">SERIAL_NUMBER</span> <span class="o">=</span> <span class="mh">0x61</span>
-    <span class="s2">&quot;1 float - The unique serial number of the device&quot;</span>
-    <span class="n">MODEL_NUMBER</span> <span class="o">=</span> <span class="mh">0x62</span>
-    <span class="s2">&quot;1 float - The model number of the device&quot;</span>
-    <span class="n">TEMPERATURE</span> <span class="o">=</span> <span class="mh">0x66</span>
-    <span class="s2">&quot;1 float - The internal temperature in Celsius&quot;</span>
-    <span class="n">SOFTWARE_VERSION</span> <span class="o">=</span> <span class="mh">0x6C</span>
-    <span class="s2">&quot;3 bytes - The software version on the device&quot;</span>
-    <span class="n">KM_END_POS</span> <span class="o">=</span> <span class="mh">0xA1</span>
-    <span class="s2">&quot;6 floats - Request the current end effector position. (X, Y, Z, Y, P, R) in mm and radians. Only for kinematic enabled arms.&quot;</span>
-    <span class="n">KM_END_VEL</span> <span class="o">=</span> <span class="mh">0xA2</span>
-    <span class="s2">&quot;6 floats - Demand the end effector velocity (XYZ, RZ, RY, RX) in mm/s and rads/s. Only for kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.&quot;</span>
-    <span class="n">KM_END_VEL_LOCAL</span> <span class="o">=</span> <span class="mh">0xCB</span>
-    <span class="s2">&quot;6 floats - Demand the end effector velocity relative to the end effector. (XYZ, RZ, RY, RX) in mm/s and rads/s. Only fora kinematic enabled arm. Rotation commands (RZ, RY, RX) is only available for 7 function arms.&quot;</span>
-    <span class="n">KM_BOX_OBSTACLE_02</span> <span class="o">=</span> <span class="mh">0xA5</span>
-    <span class="s2">&quot;6 floats - (X1, Y1, Z1, X2, Y2, Z2) mm. Box obstacle defined by 2 opposite corners of a rectangular prism. &quot;</span>
-    <span class="n">KM_BOX_OBSTACLE_03</span> <span class="o">=</span> <span class="mh">0xA6</span>
-    <span class="n">KM_BOX_OBSTACLE_04</span> <span class="o">=</span> <span class="mh">0xA7</span>
-    <span class="n">KM_BOX_OBSTACLE_05</span> <span class="o">=</span> <span class="mh">0xA8</span>
-    <span class="n">KM_CYLINDER_OBSTACLE_02</span> <span class="o">=</span> <span class="mh">0xAB</span>
-    <span class="s2">&quot;7 floats - (X1, Y1, Z1, X2, Y2, Z2, R) mm. Cylinder obstacle defined by 2 opposite centers of a cylinder. R defining the radius of the cylinder&quot;</span>
-    <span class="n">KM_CYLINDER_OBSTACLE_03</span> <span class="o">=</span> <span class="mh">0xAC</span>
-    <span class="n">KM_CYLINDER_OBSTACLE_04</span> <span class="o">=</span> <span class="mh">0xAD</span>
-    <span class="n">KM_CYLINDER_OBSTACLE_05</span> <span class="o">=</span> <span class="mh">0xAE</span>
-
-    <span class="n">VOLTAGE</span> <span class="o">=</span> <span class="mh">0x90</span>
-    <span class="s2">&quot;1 float - The supply voltage in Volts&quot;</span>
-    <span class="n">SAVE</span> <span class="o">=</span> <span class="mh">0x50</span>
-    <span class="s2">&quot;1 byte - Send this to save user configurable settings on a device&quot;</span>
-    <span class="n">HEARTBEAT_FREQUENCY</span> <span class="o">=</span> <span class="mh">0x92</span>
-    <span class="s2">&quot;1 byte - set the frequency of a packet to be sent from a device.&quot;</span>
-    <span class="n">HEARTBEAT_SET</span> <span class="o">=</span> <span class="mh">0x91</span>
-    <span class="s2">&quot;10 bytes - Specify the Packet IDs to be sent via heartbeat.&quot;</span>
-    <span class="n">POSITION_LIMITS</span> <span class="o">=</span> <span class="mh">0x10</span>
-    <span class="s2">&quot;2 floats - Maximum and Minimum positions of the device&quot;</span>
-    <span class="n">VELOCITY_LIMITS</span> <span class="o">=</span> <span class="mh">0x11</span>
-    <span class="s2">&quot;2 floats - Maximum and Minimum velocities of the device&quot;</span>
-    <span class="n">CURRENT_LIMITS</span> <span class="o">=</span> <span class="mh">0x12</span>
-    <span class="s2">&quot;2 floats - Maximum and Minimum currents of the device&quot;</span>
-
-    <span class="n">ATI_FT_READING</span> <span class="o">=</span> <span class="mh">0xD8</span>
-    <span class="s2">&quot;6 floats - Read force in N and Torque in Nm from the Force torque sensor. (FX, FY, FZ, TX, TY, TZ). Send this packet to the FT Sensor to Tare it&quot;</span>
-    <span class="n">BOOTLOADER</span> <span class="o">=</span> <span class="mh">0xFF</span>
-
-    <span class="n">VOLTAGE_THRESHOLD_PARAMETERS</span> <span class="o">=</span> <span class="mh">0x99</span>
-    <span class="s2">&quot;4 floats - Parameters to define the voltage threshold parameters. Enabled (0 or 1), V_Min (V), V_Max (V), time (seconds).&quot;</span></div>
 
 
 <div class="viewcode-block" id="BPLProtocol"><a class="viewcode-back" href="../bplprotocol/sdk.html#bplprotocol.BPLProtocol">[docs]</a><span class="k">class</span> <span class="nc">BPLProtocol</span><span class="p">:</span>

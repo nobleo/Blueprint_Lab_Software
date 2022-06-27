@@ -3,6 +3,17 @@ BPL Protocol
 
 Welcome to the BPL Protocol Documentation
 
+Enable use of the SDK
+------------------------------
+For enable full access to the SDK follow the following instructions.
+
+SDK
+--------------------------
+.. toctree::
+    :maxdepth: 1
+
+    sdk_install
+
 Python Installation
 -------------------
 
