@@ -10,19 +10,19 @@ from std_msgs.msg import Header
 
 from scipy.spatial.transform import Rotation
 
-class KM_END_POSRequest(Node):
+class EndEffectorPosePublisher(Node):
 
     def __init__(self):
-        super().__init__("request_km_end_pos_script")
+        super().__init__("EndEffectorPosePublisher")
 
         self.declare_parameter("frequency", 20)
         self.declare_parameter("frame_id", "base_link")
         self.frame_id = self.get_parameter("frame_id").value
-        self.frequency = 20
+        self.frequency = self.get_parameter("frequency").value
 
         self.tx_publisher = self.create_publisher(Packet, "tx", 100)
         self.rx_subscriber = self.create_subscription(Packet, "rx", self.receive_packet, 100)
-        self.pose_publisher = self.create_publisher(PoseStamped, "current_ee_pose", 10)
+        self.pose_publisher = self.create_publisher(PoseStamped, "end_effector_pose", 10)
         self.request_packet = Packet()
         self.request_packet.device_id = 0xFF
         self.request_packet.packet_id = int(PacketID.REQUEST)
@@ -40,7 +40,7 @@ class KM_END_POSRequest(Node):
 
         if packet_id == PacketID.KM_END_POS:
             end_pos = BPLProtocol.decode_floats(data)
-            self.get_logger().info(f"KM_END_POS Received: {end_pos}")
+            # self.get_logger().info(f"KM_END_POS Received: {end_pos}")
         
             self.convert_km_end_pos_to_pose(end_pos)
     
@@ -75,12 +75,12 @@ class KM_END_POSRequest(Node):
     
     def publish_pose(self, pose):
         self.pose_publisher.publish(pose)
-        self.get_logger().info(f'Published pose: {pose}')
+        # self.get_logger().info(f'Published pose: {pose}')
        
 
 def main(args = None):
     rclpy.init(args=args)
-    kepr = KM_END_POSRequest()
+    kepr = EndEffectorPosePublisher()
     rclpy.spin(kepr)
 
 if __name__ == "__main__":

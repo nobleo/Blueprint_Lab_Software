@@ -38,6 +38,7 @@ class BPLPassthroughNode(Node):
             self.get_logger().info("Opened serial port {}".format(serial_port))
         except serial.SerialException as e:
             self.get_logger().error("Unable to open serial port {}".format(e))
+            self.destroy_node()
             return
         self.packet_reader = PacketReader()
         self.timer = self.create_timer(1/10000000, self.rx_receive)

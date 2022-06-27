@@ -12,7 +12,7 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     pkg_share = get_package_share_directory('bpl_bravo_description')
-    urdf_file_name = 'urdf/two_bravo_7_example.urdf.xacro'
+    urdf_file_name = 'urdf/bravo_double_example.urdf.xacro'
     urdf_path = os.path.join(pkg_share, urdf_file_name)
 
     rviz_config_file = os.path.join(pkg_share, 'rviz/rviz.rviz')

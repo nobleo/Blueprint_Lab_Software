@@ -13,6 +13,7 @@ Welcome to Blueprint Lab Software's documentation!
    bplprotocol/index
    C/index
    ros1/index
+   ros2/index
    documentation/index
 
 

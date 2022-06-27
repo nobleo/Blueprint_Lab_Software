@@ -4,11 +4,8 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
-from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.descriptions import ParameterValue
-
-from bplprotocol import PacketReader, BPLProtocol, PacketID
-
+from launch.substitutions import TextSubstitution , LaunchConfiguration
 
 
 def generate_launch_description():
@@ -17,13 +14,18 @@ def generate_launch_description():
     urdf_file_name = 'urdf/bravo_5_example.urdf.xacro'
     urdf_path = os.path.join(desc_pkg_share, urdf_file_name)
 
-    rviz_config_file = os.path.join(desc_pkg_share, 'rviz/rviz.rviz')
+    share_directory = get_package_share_directory('bpl_bringup')
+    rviz_config_file = os.path.join(share_directory, 'rviz/rviz.rviz')
+    ip_address_launch_arg = DeclareLaunchArgument("ip_address", default_value=TextSubstitution(text="192.168.2.4"))
+    port_launch_arg = DeclareLaunchArgument("port", default_value=TextSubstitution(text="6789"))
 
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'use_sim_time',
-            default_value='false',
-            description='Use simulation (Gazebo) clock if true'),
+        ip_address_launch_arg,
+        port_launch_arg,
+        Node(package='bpl_passthrough',
+            executable='udp_passthrough',
+            parameters=[{"ip_address":LaunchConfiguration("ip_address"), "port":LaunchConfiguration("port")}]),
+
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -42,11 +44,15 @@ def generate_launch_description():
                 'publish_frequency': 20,
             }]
         ),
+        Node(
+            package='bpl_control',
+            executable='end_effector_pose_publisher',
+            parameters=[{
+                "frequency":10
+            }]
+        ),
         
-        Node(package='bpl_passthrough',
-            executable='udp_passthrough',
-            parameters=[{"ip_address":"192.168.2.3"}]),
-
+        
         Node(
             package='rviz2',
             executable='rviz2',

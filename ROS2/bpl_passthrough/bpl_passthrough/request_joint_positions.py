@@ -24,11 +24,8 @@ class JointRequestExample(Node):
         self.request_packet.packet_id = int(PacketID.REQUEST)
         self.request_packet.data = [PacketID.POSITION]
 
-
         self.timer = self.create_timer(1/self.frequency, self.timer_callback)
-        
-            # rate.sleep()
-        
+                
     def timer_callback(self):
         self.tx_publisher.publish(self.request_packet)
 
@@ -39,7 +36,7 @@ class JointRequestExample(Node):
 
         if packet_id == PacketID.POSITION:
             position = BPLProtocol.decode_floats(data)[0]
-            print("Position Received: {} - {}".format(device_id, position))
+            self.get_logger().info("Position Received: {} - {}".format(device_id, position))
 
 def main(args=None):
     rclpy.init(args=args)

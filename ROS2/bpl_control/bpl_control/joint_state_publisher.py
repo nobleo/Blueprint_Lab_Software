@@ -62,8 +62,6 @@ class BPLJointStatesPublisher(Node):
 
                 device_index = self.joints.index(device_id)
 
-                
-                
                 position = BPLProtocol.decode_floats(data)[0]
                 
                 if device_index == 0:
