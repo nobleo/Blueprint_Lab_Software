@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Documentation &mdash; Blueprint Lab Software 0.0.2 documentation</title>
+  <title>Access to the SDK &mdash; Blueprint Lab Software 0.0.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -19,7 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Using bpl_passthrough to get joint positions" href="../ros1/bpl_passthrough/request_joint_positions.html" /> 
+    <link rel="next" title="Requesting Joint Positions" href="examples/requesting_joint_positions.html" />
+    <link rel="prev" title="BPL Protocol" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,15 +40,22 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../bplprotocol/index.html">BPL Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#reach-alpha">Reach Alpha</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reach-bravo">Reach Bravo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#master-arm">Master Arm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reach-system-communication-protocol">Reach System Communication Protocol</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">BPL Protocol</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#enable-use-of-the-sdk">Enable use of the SDK</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sdk">SDK</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Access to the SDK</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-installation">Python Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../C/index.html">BPL Protocol - C/C++ SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros1/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros2/index.html">ROS2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Documentation</a></li>
 </ul>
 
         </div>
@@ -64,9 +72,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Documentation</li>
+          <li><a href="index.html">BPL Protocol</a> &raquo;</li>
+      <li>Access to the SDK</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/documentation/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/bplprotocol/sdk_install.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -74,31 +83,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>Documentation<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<section id="reach-alpha">
-<h2>Reach Alpha<a class="headerlink" href="#reach-alpha" title="Permalink to this headline"></a></h2>
-<p>Reach Alpha Integration Manual <a class="reference download internal" download="" href="../_downloads/0aeeeef84741adc09718a8cb93ed2e2b/Reach%20Alpha%20Integration%20Manual%20V1.16.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a></p>
-</section>
-<section id="reach-bravo">
-<h2>Reach Bravo<a class="headerlink" href="#reach-bravo" title="Permalink to this headline"></a></h2>
-<p>Reach Bravo Integration Manual <a class="reference download internal" download="" href="../_downloads/067d5d64531f4870755729423c5c9fae/Reach%20Bravo%20Integration%20Manual%20V3.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a></p>
-</section>
-<section id="master-arm">
-<h2>Master Arm<a class="headerlink" href="#master-arm" title="Permalink to this headline"></a></h2>
-<p>Master Arm Integration Manual <a class="reference download internal" download="" href="../_downloads/a5cf4c2cb2470f32d12abf609a6a286a/Master%20Arm%20Integration%20Manual%20V2.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a></p>
-</section>
-<section id="reach-system-communication-protocol">
-<h2>Reach System Communication Protocol<a class="headerlink" href="#reach-system-communication-protocol" title="Permalink to this headline"></a></h2>
-<p>Reach System Communication Protocol (Lite) <a class="reference download internal" download="" href="../_downloads/160c8c27fcd4b6d1c52b04d50486bb7e/Reach%20System%20-%20Communication%20Protocol%20-%20V1.11.0%20-%20%28Lite%29.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a></p>
-</section>
+  <section id="access-to-the-sdk">
+<h1>Access to the SDK<a class="headerlink" href="#access-to-the-sdk" title="Permalink to this headline"></a></h1>
+<p>For Full use access to the SDK download the required files from the <a class="reference external" href="https://blueprintlab.com/github-page/">Blueprint Lab Website.</a>.
+Use the password provided to you from Blueprint Lab.</p>
+<a class="reference internal image-reference" href="../_images/website_page.png"><img alt="../_images/website_page.png" src="../_images/website_page.png" style="width: 300px;" /></a>
+<ol class="arabic simple">
+<li><p>Open the ZIP File.</p></li>
+<li><p>Copy the ZIP File to the Blueprint_Lab_Software Folder</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/instruction_install_sdk.png"><img alt="../_images/instruction_install_sdk.png" src="../_images/instruction_install_sdk.png" style="width: 600px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Merge The folders if prompted.</p></li>
+<li><p>Proceed to install the SDK</p></li>
+</ol>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ros1/bpl_passthrough/request_joint_positions.html" class="btn btn-neutral float-left" title="Using bpl_passthrough to get joint positions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="BPL Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/requesting_joint_positions.html" class="btn btn-neutral float-right" title="Requesting Joint Positions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
