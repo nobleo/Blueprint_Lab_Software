@@ -124,7 +124,7 @@
   <link name="bravo_1026_0_base_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1026 A.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1026-A.stl"/>
       </geometry>
       <material name="bravo_black"/>
     </visual>
@@ -151,7 +151,7 @@
   <link name="bravo_1026_0_joint_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1026 B.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1026-B.stl"/>
       </geometry>
       <material name="bravo_black"/>
     </visual>
@@ -163,14 +163,14 @@
     </collision>
     <collision>
       <geometry>
-        <cylinder length="0.0946" radius="0.0408"/>
+        <cylinder length="0.0851" radius="0.0408"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0.0408 0 -0.0473"/>
     </collision>
   </link>
   <joint name="bravo_1026_0_end_joint" type="fixed">
     <parent link="bravo_1026_0_joint_link"/>
-    <origin rpy="3.14159 0 0" xyz="0.0408 0 -0.0956"/>
+    <origin rpy="3.14159 0 0" xyz="0.0408 0 -0.08705"/>
     <child link="bravo_1026_0_end_link"/>
   </joint>
   <link name="bravo_1026_0_end_link"/>
@@ -191,7 +191,7 @@
   <link name="bravo_1026_1_joint_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1026 C.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1026-C.stl"/>
       </geometry>
       <material name="bravo_black"/>
       <origin rpy="0 0 0" xyz="0 0 0 "/>
@@ -217,7 +217,7 @@
   <link name="bravo_1023_0_base_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1023 A.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1023-A.stl"/>
       </geometry>
       <material name="bravo_black"/>
     </visual>
@@ -244,7 +244,7 @@
   <link name="bravo_1023_0_joint_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1023 B.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1023-B.stl"/>
       </geometry>
       <material name="bravo_black"/>
     </visual>
@@ -256,14 +256,14 @@
     </collision>
     <collision>
       <geometry>
-        <cylinder length="0.0946" radius="0.0408"/>
+        <cylinder length="0.0851" radius="0.0408"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0.0408 0 -0.0473"/>
     </collision>
   </link>
   <joint name="bravo_1023_0_end_joint" type="fixed">
     <parent link="bravo_1023_0_joint_link"/>
-    <origin rpy="3.14159 0 0" xyz="0.0408 0 -0.0956"/>
+    <origin rpy="3.14159 0 0" xyz="0.0408 0 -0.08705"/>
     <child link="bravo_1023_0_end_link"/>
   </joint>
   <link name="bravo_1023_0_end_link"/>
@@ -284,7 +284,7 @@
   <link name="bravo_1023_1_joint_link">
     <visual>
       <geometry>
-        <mesh filename="package://bpl_bravo_description_mk2/meshes/1023 C.stl"/>
+        <mesh filename="package://bpl_bravo_description_mk2/meshes/RS2-1023-C.stl"/>
       </geometry>
       <material name="bravo_black"/>
     </visual>
