@@ -1,4 +1,6 @@
 .. _documentation:
+
+
 Documentation
 =====================
 
@@ -22,4 +24,6 @@ Master Arm Integration Manual :download:`pdf </docs/Master Arm Integration Manua
 
 Reach System Communication Protocol
 ---------------------------------------
-Reach System Communication Protocol (Lite) :download:`pdf </docs/Reach System - Communication Protocol - V1.11.0 - (Lite).pdf>`
+
+Reach System Communication Protocol (Lite) :download:`pdf </docs/Reach System - Communication Protocol Lite (V1.11.2).pdf>`
+
