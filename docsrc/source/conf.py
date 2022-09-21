@@ -18,8 +18,8 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Blueprint Lab Software'
-copyright = '2022, Blueprintlab'
+project = 'Reach Robotics Software'
+copyright = '2022, Reach Robotics'
 author = 'John Sumskas'
 
 # The full version, including alpha/beta/rc tags
