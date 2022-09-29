@@ -1,5 +1,8 @@
 # Blueprint Lab Software
-The Blueprint lab software is a repository.
+The Blueprint lab Software reposiory contains the Software interfaces and tools for working with Blueprint Products.
+
+## NOTE
+The Blueprint Lab Software is now deprecated. Please use https://github.com/Reach-Robotics/reach_robotics_sdk 
 
 ## Installation
 
